@@ -1,0 +1,8 @@
+---
+:orm: couchrest
+:test: shoulda
+:mock: mocha
+:script: jquery
+:renderer: haml
+:stylesheet: none
+:admin_renderer: haml

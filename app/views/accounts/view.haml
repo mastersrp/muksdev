@@ -1,0 +1,11 @@
+- if @account == nil
+	%h2
+		The account you requested could not be found!
+	%h3
+		Given id:
+		=@id
+- else
+	%h2
+		You are viewing
+		=@account.name
+		' profile.

@@ -1,0 +1,27 @@
+!!!
+%html
+	%head
+		%meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+		=stylesheet_link_tag 'aloha'
+		=javascript_include_tag 'jquery'
+		=javascript_include_tag 'require'
+		-#		%script{:src => '/javascripts/aloha.js', :data-aloha-plugins => 'common/ui,common/format,common/highlighteditables,common/link'}
+		%title padrApp
+	%body
+		#header
+		%ul
+			- puts session
+			%li
+				%a{:href => '/forum'} Forum
+			- if session[:logged_in] == true then
+				%li
+					%a{:href => '/account'} Account
+			- else
+				%li
+					%a{:href => '/account'} Account
+		#content
+			= yield
+		#footer
+			%p
+				Design and backend software by
+				%a{:href => 'http://necrophcodr.co.cc'} necrohpcodr

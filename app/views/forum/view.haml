@@ -1,0 +1,16 @@
+%h2
+	=@discussion[:title]
+	
+- @discussion.posts.each do |post|
+	#post
+		%h3=link_to post.account[:name], url(:accounts, :view, :id => post.account[:_id])
+		=post[:body]
+		%br
+		%p
+			Posted on:
+			=post[:created_at]
+		%input{:type => 'button', :name => 'replyto', :value => 'reply'}
+
+%form{:action => url(:posts,:create, @discussion[:_id]), :method => 'POST'}
+	%textarea{:id => 'editable', :name => 'body'}
+	%input{:type => 'submit'}

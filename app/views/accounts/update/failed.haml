@@ -1,0 +1,9 @@
+%h2
+	-if @error.count > 0 then
+		Failed to update settings!
+	-else
+		Settings updated!
+
+- @error.each do |e|
+	%p{:class => 'errormsg'}=e
+	%br

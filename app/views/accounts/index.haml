@@ -1,4 +1,38 @@
-- if session[:logged_in] != true then
+- if current_account == nil then
 	- redirect '/account/new'
 - else
-	- # Display account information
+	
+	%form{:action => '/account/update', :method => 'POST'}
+		%label
+			User name
+			=link_to '(Purchase)', '/shop/account'
+		%br
+		%input{:type => 'text', :name => 'name', :value => current_account.name, :readonly => 'readonly'}
+		%br
+		%label
+			Title
+			=link_to '(Purchase)', '/shop/account'
+		%br
+		%input{:type => 'text', :name => 'title', :value => current_account.title, :readonly => 'readonly'}
+		%br
+		%label
+			Email
+		%br
+		%input{:type => 'text', :name => 'email', :value => current_account.email}
+		%br
+		%label
+			New password
+		%br
+		%input{:type => 'password', :name => 'new_password'}
+		%br	
+		%label
+			Confirm new password
+		%br
+		%input{:type => 'password', :name => 'new_password_confirm'}
+		%br
+		%label
+			Current password (enter this to update your settings)
+		%br
+		%input{:type => 'password', :name => 'current_password'}
+		%br
+		%input{:type => 'submit'}

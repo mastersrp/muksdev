@@ -26,7 +26,7 @@ PadrApp.controllers :forum do
   end
 
   get :view, :with => :id do
-  	@discussion = Discussion.get :id
+  	@discussion = Discussion.get params[:id]
   	render 'forum/view'
   end
   
@@ -34,7 +34,14 @@ PadrApp.controllers :forum do
   	render 'forum/new'
   end
 
-  post :create do
+  post :create do	
+    if ( current_account != nil ) then
+       @post = Post.create(:title => params[:title], :body => params[:body], :created_at => DateTime.now, :account => current_account )
+       @discussion = Discussion.create(:title => params[:title], :posts => [@post], :account => current_account)
+       redirect url(:forum,:view,:id => @discussion[:_id])
+    else
+			redirect url(:accounts,:new)
+  	end
   end
 
 end

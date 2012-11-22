@@ -5,7 +5,10 @@
 		Given id:
 		=@id
 - else
-	%h2
-		You are viewing
-		=@account.name
-		' profile.
+	%h2=@account[:name]
+	%p
+		Title:
+		=@account[:title]
+	%p
+		Email: 
+		=@account[:email]

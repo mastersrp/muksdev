@@ -5,23 +5,30 @@
 		=stylesheet_link_tag 'aloha'
 		=javascript_include_tag 'jquery'
 		=javascript_include_tag 'require'
-		-#		%script{:src => '/javascripts/aloha.js', :data-aloha-plugins => 'common/ui,common/format,common/highlighteditables,common/link'}
+		=javascript_include_tag 'aloha'
 		%title padrApp
 	%body
 		#header
 		%ul
-			- puts session
 			%li
-				%a{:href => '/forum'} Forum
-			- if session[:logged_in] == true then
+				=link_to 'Home', url(:home,:index)
+			%li
+				=link_to 'Forum', url(:forum,:index)
+			- if current_account != nil then
 				%li
-					%a{:href => '/account'} Account
+					=link_to current_account.name, url(:accounts,:index)
+					=link_to 'Log out', url(:accounts,:logout)
 			- else
 				%li
-					%a{:href => '/account'} Account
+					=link_to 'Account', url(:accounts,:index)
 		#content
-			= yield
+			=yield
 		#footer
 			%p
 				Design and backend software by
 				%a{:href => 'http://necrophcodr.co.cc'} necrohpcodr
+				
+		:javascript
+			Aloha.ready(function(){
+				Aloha.jQuery("#editable").aloha();
+			});

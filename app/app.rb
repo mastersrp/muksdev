@@ -2,8 +2,10 @@ class PadrApp < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers
-
+  register Padrino::Admin::AccessControl
+	
   enable :sessions
+  set :login_page, '/account/new'
 
   ##
   # Caching support

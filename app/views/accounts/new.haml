@@ -1,22 +1,26 @@
-- @accounts.each do |acc|
-	=link_to acc.name, url(:accounts, :view, :id => acc._id)
 - if session[:logged_in] != true then
 	%p
 		You are NOT currently logged in!
 		%form
 			%input{ :type => "radio", :name => "method", :value => "login" } Log In
 			%input{ :type => "radio", :name => "method", :value => "signup" } Sign Up
-		%form{ :action => "/account/signup", :method => "POST" }
+		
+		%label
+			Sign Up
+		%form{ :action => "/account/create", :method => "POST" }
 			%label User Name
-			%input{ :type => "text" }
+			%input{ :type => "text", :name => "username" }
 			%label Email
-			%input{ :type => "text" }
+			%input{ :type => "text", :name => "email" }
 			%input{ :type => "submit" }
+		%br
+		%label
+			Log In
 		%form{ :action => "/account/login", :method => "POST" }
 			%label Email
-			%input{ :type => "text" }
+			%input{ :type => "text", :name => "email" }
 			%label Password
-			%input{ :type => "password" }
+			%input{ :type => "password", :name => "password" }
 			%input{ :type => "submit" }
 - else
 	%p

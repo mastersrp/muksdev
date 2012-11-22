@@ -1,10 +1,6 @@
 %h2
 	Create new discussion
 %form{:action => '/forum/create', :method => 'POST'}
-	%input{:type => 'textbox', :class => 'edit', :name => 'title'}
-
-
-:javascript
-	Aloha.ready( function() {
-		Aloha.jQuery('input#edit').aloha();
-	});
+	%input{ :type => 'text', :name => 'title' }
+	%textarea{ :id => 'editable', :rows => '10', :cols => '50', :name => 'body'}
+	%input{:type => 'submit'}

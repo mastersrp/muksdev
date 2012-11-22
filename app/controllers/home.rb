@@ -21,7 +21,6 @@ PadrApp.controllers :home do
   layout :default
 
   get :index, :map => "/" do
-  	@accounts = Account.all
   	render 'index'
   end
 

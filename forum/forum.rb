@@ -1,6 +1,6 @@
 PadrApp.controllers :forum do
   # get :index, :map => "/foo/bar" do
-  #   sessio	n[:foo] = "bar"
+  #   session[:foo] = "bar"
   #   render 'index'
   # end
 

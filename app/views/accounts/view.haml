@@ -5,7 +5,11 @@
 		Given id:
 		=@id
 - else
-	%h2=@account[:name]
+	%h2
+		=@account[:name]
+		(
+		=@account.balance
+		Credits )
 	%p
 		Title:
 		=@account[:title]

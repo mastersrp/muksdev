@@ -1,0 +1,10 @@
+%h2
+	Browse Items
+
+%form{:action => '/shop/browse', :method => 'POST'}	
+	%label
+		Show Unavailable
+	%input{:type => 'checkbox', :name => 'showUnavailable'  }
+
+%p
+	iterate over available (and unavailable?) items here

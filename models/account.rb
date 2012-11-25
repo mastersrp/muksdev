@@ -8,6 +8,7 @@ class Account < CouchRest::Model::Base
   property :email,						String
   property :crypted_password,	String
   property :role,							String
+  property :balance,					Float
   property :created_at,				DateTime
 
   view_by :email

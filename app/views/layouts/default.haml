@@ -12,11 +12,19 @@
 		%ul
 			%li
 				=link_to 'Home', url(:home,:index)
+			- Padrino.mounted_apps.each do |app|
+				- if app.uri_root == '/' then next	
+				- else
+					%li
+						=link_to app.name, app.uri_root
 			%li
 				=link_to 'Forum', url(:forum,:index)
 			- if current_account != nil then
 				%li
 					=link_to current_account.name, url(:accounts,:index)
+					(
+					=current_account.balance
+					Credits )
 					=link_to 'Log out', url(:accounts,:logout)
 			- else
 				%li

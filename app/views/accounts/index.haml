@@ -5,15 +5,17 @@
 	%form{:action => '/account/update', :method => 'POST'}
 		%label
 			User name
-			=link_to '(Purchase)', '/shop/account'
+			- if current_account[:balance] < 10.0
+				=link_to '(Purchase)', '/shop/account'
 		%br
-		%input{:type => 'text', :name => 'name', :value => current_account.name, :readonly => 'readonly'}
+		%input{:type => 'text', :name => 'name', :value => current_account.name}
 		%br
 		%label
 			Title
-			=link_to '(Purchase)', '/shop/account'
+			- if current_account[:balance] < 5.0
+				=link_to '(Purchase)', '/shop/account'
 		%br
-		%input{:type => 'text', :name => 'title', :value => current_account.title, :readonly => 'readonly'}
+		%input{:type => 'text', :name => 'title', :value => current_account.title}
 		%br
 		%label
 			Email
@@ -34,5 +36,11 @@
 			Current password (enter this to update your settings)
 		%br
 		%input{:type => 'password', :name => 'current_password'}
+		%br
+		- if Padrino.env == :development
+			%label
+				Balance
+			%br
+			%input{:type => 'text', :name => 'balance'}
 		%br
 		%input{:type => 'submit'}

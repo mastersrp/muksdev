@@ -27,8 +27,12 @@ PadrApp.controllers :accounts do
   end
   
   get :all, :map => "/account/all" do
-  	@accounts = Account.all
-  	render 'accounts/all'
+  	if ( Padrino.env == :development ) then
+	  	@accounts = Account.all
+  		render 'accounts/all'
+  	else
+  		redirect url(:home,:index)
+  	end
   end
   
   get :view, :with => :id do
@@ -45,7 +49,7 @@ PadrApp.controllers :accounts do
   	@info = {:email => params[:email],:username => params[:username]}
   	@hash = Digest::SHA2.hexdigest( "-#{Time.now.to_s}-#{params[:email]}-" ).upcase().to_s
   	@info[:password] = @hash[rand(@hash.length-8),8].to_s
-	 	account = Account.create(:email => @info[:email], :name => @info[:username], :title => "Member", :password => @info[:password], :password_confirmation => @info[:password], :role => "member" )
+	 	account = Account.create(:email => @info[:email], :name => @info[:username], :title => "Member", :password => @info[:password], :password_confirmation => @info[:password], :role => "member", :balance => 0.0 )
 	 	if account.valid?
 #	  	email(
 #	  		:from => "tcg.thegamer@gmail.com",
@@ -62,18 +66,30 @@ PadrApp.controllers :accounts do
   end
 
   post :update, :map => "/account/update" do
-  	if current_account.has_password? params[:current_password] then
-  		current_account.update_attributes(
-  			:name => current_account.name,
-  			:title => current_account.title,
-  			:email => params[:email],
-  			:password => params[:new_password],
-  			:password_confirmation => params[:new_password_confirm]
-  		)
-  		current_account.save!	
-  		@error = current_account.errors.full_messages
-			render 'accounts/update/failed'
+  	if current_account == nil then redirect url(:accounts,:index) end
+  	if !current_account.has_password? params[:current_password] then redirect url(:accounts,:index) end
+  	@updatehash = {}
+  	if (current_account[:name] != params[:name]) then
+  		@account = Account.get_by_name params[:name]
+  		if @account == nil then
+	  			@updatehash[:name] = params[:name]
+	  	else
+	  		redirect url(:accounts,:index)
+	  	end
+	  end
+	  @updatehash[:email] = params[:email]
+  	if (current_account[:title] != params[:title]) then
+  		@updatehash[:title] = params[:title]
   	end
+  	if (params[:new_password] == params[:new_password_confirm]) & ( params[:new_password] != nil ) then
+  		@updatehash[:password] = params[:new_password]
+  		@updatehash[:password_confirmation] = params[:new_password_confirm]
+  	end
+  	if ( Padrino.env == :development ) & ( params[:balance].to_f > 0.0 ) then @updatehash[:balance] = params[:balance].to_f end
+  	current_account.update_attributes(@updatehash)
+  	current_account.save!
+  	@error = current_account.errors.full_messages
+		render 'accounts/update/failed'
   end
   
   post :login, :map => "/account/login" do

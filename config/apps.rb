@@ -35,6 +35,3 @@ Padrino.mount("PadrApp").to('/')
 
 Padrino.mount("Admin").to("/admin")
 
-Padrino.mount("Shop").to("/shop")
-Padrino.mount("Wiki").to("/wiki")
-Padrino.mount("Forum").to("/forum")

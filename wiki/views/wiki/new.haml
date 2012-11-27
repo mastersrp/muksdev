@@ -1,0 +1,6 @@
+%h2
+	Create new article
+	
+%form{:action => url(:wiki,:create), :method => 'POST'}
+	%input{:type => 'textbox', :name => 'title'}
+	%input{:type => 'submit'}

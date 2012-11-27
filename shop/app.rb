@@ -2,6 +2,7 @@ class Shop < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers
+  register Padrino::Admin::AccessControl
 
   enable :sessions
   set :login_page, '/account/new'
@@ -10,7 +11,7 @@ class Shop < Padrino::Application
   # Caching support
   #
   # register Padrino::Cache
-  # enable :caching
+  enable :caching
   #
   # You can customize caching store engines:
   #

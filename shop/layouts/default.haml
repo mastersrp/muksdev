@@ -6,7 +6,8 @@
 		=javascript_include_tag 'jquery'
 		=javascript_include_tag 'require'
 		=javascript_include_tag 'aloha'
-		%title padrApp
+		%title
+			=@title
 	%body
 		#header
 		%ul
@@ -17,8 +18,6 @@
 				- else
 					%li
 						=link_to app.name, app.uri_root
-			%li
-				=link_to 'Forum', url(:forum,:index)
 			- if current_account != nil then
 				%li
 					=link_to current_account.name, url(:accounts,:index)

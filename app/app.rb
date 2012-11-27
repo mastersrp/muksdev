@@ -6,12 +6,12 @@ class PadrApp < Padrino::Application
 	
   enable :sessions
   set :login_page, '/account/new'
-
+  
   ##
   # Caching support
   #
   # register Padrino::Cache
-  # enable :caching
+  enable :caching
   #
   # You can customize caching store engines:
   #
@@ -35,7 +35,7 @@ class PadrApp < Padrino::Application
   # set :locale_path, "bar"       # Set path for I18n translations (default your_app/locales)
   # disable :sessions             # Disabled sessions by default (enable if needed)
   # disable :flash                # Disables sinatra-flash (enabled by default if Sinatra::Flash is defined)
-   layout  :default		            # Layout can be in views/layouts/foo.ext or views/foo.ext (default :application)
+  # layout  :default		            # Layout can be in views/layouts/foo.ext or views/foo.ext (default :application)
   #
 
   ##

@@ -17,6 +17,36 @@ Wiki.controllers  do
   # get "/example" do
   #   "Hello world!"
   # end
+  
+  layout :default
+  
+  get :index do
+  	render 'wiki/index'
+  end
+  
+  get :all do
+  	@articles = Article.all
+  	render 'wiki/all'
+  end
+  
+  get :view, :with => :id do
+  	render 'wiki/view'
+  end
+  
+  get :edit, :with => :id do
+  	render 'wiki/edit'
+  end
+  
+  post :create do
+  	@article = Article.new
+  	@article[:title] = params[:title]
+  	@article.save!
+  	
+  	redirect url(:wiki,:edit,:id => @article[:_id])
+  end
+  
+  post :update do
+  end
 
   
 end

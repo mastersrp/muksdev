@@ -1,10 +1,9 @@
 class Account < CouchRest::Model::Base
   attr_accessor :password, :password_confirmation
-
-  # Properties
-  #property :id,								Serial
+  
   property :name,							String
   property :title,						String
+  property :avatar,						String
   property :email,						String
   property :crypted_password,	String
   property :role,							String

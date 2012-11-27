@@ -1,0 +1,5 @@
+%h2
+	Displaying all articles available
+	
+- @articles.each do |article|
+	=link_to article[:title], url(:wiki,:view, :id => article[:_id])

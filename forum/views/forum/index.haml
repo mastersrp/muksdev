@@ -1,7 +1,12 @@
 %h2
 	Discussions
+
+=link_to "New Discussion", Forum.url(:new)	
+%br
+
 - @discussions.each do |thread|
 	=link_to thread[:title], url(:forum, :view, :id => thread[:_id])
 	%br
 
-=link_to 'Create new discussion', '/forum/new'
+=link_to 'New Discussion', Forum.url(:new)
+%br

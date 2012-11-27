@@ -17,8 +17,6 @@ PadrApp.controllers :home do
   # get "/example" do
   #   "Hello world!"
   # end
-  
-  layout :default
 
   get :index, :map => "/" do
   	render 'index'

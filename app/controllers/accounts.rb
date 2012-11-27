@@ -19,8 +19,6 @@ PadrApp.controllers :accounts do
   # get "/example" do
   #   "Hello world!"
   # end
-  
-  layout :default
 
   get :index, :map => "/account" do
   	render 'accounts/index'
@@ -66,30 +64,40 @@ PadrApp.controllers :accounts do
   end
 
   post :update, :map => "/account/update" do
-  	if current_account == nil then redirect url(:accounts,:index) end
-  	if !current_account.has_password? params[:current_password] then redirect url(:accounts,:index) end
+  	if current_account == nil then
+  		redirect url(:accounts,:index)
+  	end
+  	if !current_account.has_password? params[:current_password] then
+  		redirect url(:accounts,:index)
+  	end
   	@updatehash = {}
   	if (current_account[:name] != params[:name]) then
   		@account = Account.get_by_name params[:name]
   		if @account == nil then
 	  			@updatehash[:name] = params[:name]
 	  	else
+	  		p params[:name]
+	  		p current_account[:name]
 	  		redirect url(:accounts,:index)
 	  	end
 	  end
+	  p current_account[:crypted_password]
 	  @updatehash[:email] = params[:email]
   	if (current_account[:title] != params[:title]) then
   		@updatehash[:title] = params[:title]
   	end
   	if (params[:new_password] == params[:new_password_confirm]) & ( params[:new_password] != nil ) then
-  		@updatehash[:password] = params[:new_password]
-  		@updatehash[:password_confirmation] = params[:new_password_confirm]
+  		p "Updating password"
+  		current_account.password = params[:new_password]
+  		current_account[:password_confirmation] = params[:new_password_confirm]
   	end
   	if ( Padrino.env == :development ) & ( params[:balance].to_f > 0.0 ) then @updatehash[:balance] = params[:balance].to_f end
-  	current_account.update_attributes(@updatehash)
+  	current_account.attributes = @updatehash
+  	p current_account[:crypted_password]
   	current_account.save!
+  	p current_account[:crypted_password]
   	@error = current_account.errors.full_messages
-		render 'accounts/update/failed'
+		render 'accounts/update/complete'
   end
   
   post :login, :map => "/account/login" do

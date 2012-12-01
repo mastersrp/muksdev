@@ -3,10 +3,28 @@
 
 =link_to "New Discussion", url(:forum,:new)	
 %br
+%table
+	%tr
+		%th
+			Title
+		%th
+			Posts
+		%th
+			Views
 
-- @discussions.each do |thread|
-	=link_to thread[:title], url(:forum, :view, :id => thread[:_id])
-	%br
+	- @discussions.each do |thread|
+		%tr
+			%td
+				=link_to thread[:title], url(:forum, :view, :id => thread[:_id])
+				%br
+				Posted by
+				=link_to thread.account[:name], url(:accounts,:view, :id => thread.account[:_id])
+			%td
+				=thread.posts.count
+			%td
+				0
+
+%br
 
 =link_to 'New Discussion', url(:forum,:new)
 %br

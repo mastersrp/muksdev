@@ -2,20 +2,18 @@
 %html
 	%head
 		%meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-		=stylesheet_link_tag 'aloha'
+		=stylesheet_link_tag 'aloha', 'desktop'
 		=javascript_include_tag 'application', 'jquery', 'require', 'aloha'
 		%title
-			=@title
+			PadrApp
 	%body
 		#header
 		#content
 			.sidebar
-				%input{:type => 'text', :list => 'subapps', :id => 'changeApp', :onChange => "changeApp(this.text)"}
+				%input{:type => 'text', :list => 'subapps', :id => 'changeApp', :onChange => "changeApp()"}
 				%datalist{:id => 'subapps' }
-					%option{:value => 'Front'}
-						\/
-					%option{:value => 'Forums'}
-						\/forum
+					%option{:value => 'Front', :id => '/'} /
+					%option{:value => 'Forums', :id => '/forum'} /forums
 					- if current_account != nil then
 						- if current_account[:role] == "admin" then
 							%option{:value => 'Admin'}
@@ -27,9 +25,12 @@
 					=current_account.balance
 					BTC )
 					%br
-					=current_account[:avatar]
-					%br
 					=current_account[:title]
+					%br
+					- if current_account[:avatar] == nil then
+						[insert_avatar_here]
+					- else
+						=current_account[:avatar]
 					%br
 					=link_to "Control Panel", PadrApp.url(:accounts,:index)
 					%br
@@ -40,6 +41,15 @@
 					\/
 					=link_to "Log In", PadrApp.url(:accounts,:index)
 					%br
+				%b
+					Browse Forums
+				%br
+				=link_to "All", PadrApp.url(:forum,:index)
+				%br
+				%b
+					Favorites
+				%br
+				=link_to "General", PadrApp.url(:forum,:index)
 			=yield
 		#footer
 			%p
@@ -50,7 +60,6 @@
 			Aloha.ready(function(){
 				Aloha.jQuery("#editable").aloha();
 			});
-			var changeApp = function(elm){
-				window.location.href = elm
-				// Redirect user to ' url(elm) '
+			var changeApp = function(){
+				// var option = $("input#changeApp").attr("selected")
 			}

@@ -1,7 +1,6 @@
 class Post < CouchRest::Model::Base
   unique_id :id
 
-  property :title
   property :body
   property :created_at
   

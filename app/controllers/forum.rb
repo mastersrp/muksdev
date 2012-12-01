@@ -1,22 +1,4 @@
 PadrApp.controllers :forum do
-  # get :index, :map => "/foo/bar" do
-  #   session[:foo] = "bar"
-  #   render 'index'
-  # end
-
-  # get :sample, :map => "/sample/url", :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
-
-  # get :foo, :with => :id do
-  #   "Maps to url '/foo/#{params[:id]}'"
-  # end
-
-  # get "/example" do
-  #   "Hello world!"
-  # end
 
   get :index do
   	@discussions = Discussion.all
@@ -35,6 +17,9 @@ PadrApp.controllers :forum do
   post :create do	
     if ( current_account != nil ) then
        @post = Post.create(:title => params[:title], :body => params[:body], :created_at => DateTime.now, :account => current_account )
+#       if ( Discussion.find_by_title( params[:title] ) != nil ) then
+#       	redirect url( :forum,:new )
+#       end
        @discussion = Discussion.create(:title => params[:title], :posts => [@post], :account => current_account)
        redirect url(:forum,:view,:id => @discussion[:_id])
     else
@@ -45,28 +30,10 @@ PadrApp.controllers :forum do
 end
 
 PadrApp.controllers :posts do
-  # get :index, :map => "/foo/bar" do
-  #   session[:foo] = "bar"
-  #   render 'index'
-  # end
-
-  # get :sample, :map => "/sample/url", :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
-
-  # get :foo, :with => :id do
-  #   "Maps to url '/foo/#{params[:id]}'"
-  # end
-
-  # get "/example" do
-  #   "Hello world!"
-  # end
   
   post :create, :with => :id do
     if ( current_account != nil ) then
-       @post = Post.create(:title => nil, :body => params[:body], :created_at => DateTime.now, :account => current_account )
+       @post = Post.create(:body => params[:body], :created_at => DateTime.now, :account => current_account )
        if !@post then
         #dunno
         puts "bad thing?"

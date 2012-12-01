@@ -2,6 +2,7 @@ class Discussion < CouchRest::Model::Base
   unique_id :id
 
   property :title
+  property :views
   
   belongs_to :account
   collection_of :posts

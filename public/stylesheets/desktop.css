@@ -1,3 +1,29 @@
+body {
+	background-color: white;
+}
+
+#content {
+	background-color: white;
+	margin-left: 15em;
+	padding: 0.5em;
+	border-color: #0071C2;
+	border-width: 0.5em;
+	border-style: solid;
+}
+
+#footer {
+	background-color: white;
+	padding: 0.5em;
+	border-color: #0071C2;
+	border-width: 0.5em;
+	border-style: solid;
+}
+
 .sidebar {
+	background-color: white;
+	padding: 0.5em;
+	border-color: #0071C2;
+	border-width: 0.5em;
+	border-style: solid;
 	float: left;
 }

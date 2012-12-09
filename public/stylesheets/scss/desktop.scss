@@ -1,0 +1,47 @@
+body {
+	background-color: #FFFFFF;
+}
+
+#content {
+	background-color: #FFFFFF;
+	margin-left: 11.8em;
+	padding: 0.5em;
+	min-height: 15em;
+	border-color: #0071C2;
+	border-width: 0.5em;
+	border-style: solid;
+	#forum {
+		#post {
+			td {
+				background-color: #FFFFFF;
+				padding:0.1em;
+				border-color: #0071C2;
+				border-width: 0.1em;
+				border-style: solid;
+				border-left-style: dotted;
+				border-right-style: dotted;
+			}
+		}
+	}
+}
+
+#footer {
+	background-color: #FFFFFF;
+	padding: 0.2em;
+	margin-top: 0.5em;
+	border: 0 0 0 0;
+	border-top-color: #0071C2;
+	border-top-width: 0.1em;
+	border-top-style: solid;
+}
+
+.sidebar {
+	background-color: #FFFFFF;
+	padding: 0.5em;
+	width: 10em;
+	border-color: #0071C2;
+	border-right-color: #005591;
+	border-width: 0.5em;
+	border-style: solid;
+	float: left;
+}

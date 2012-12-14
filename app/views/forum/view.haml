@@ -9,8 +9,10 @@
 		%p
 			Posted on:
 			=post[:created_at]
-		%input{:type => 'button', :name => 'replyto', :value => 'reply'}
+		- if current_account != nil then
+			%input{:type => 'button', :name => 'replyto', :value => 'reply'}
 
-%form{:action => url(:posts,:create, @discussion[:_id]), :method => 'POST'}
-	%textarea{:id => 'editable', :name => 'body'}
-	%input{:type => 'submit'}
+- if current_account != nil then
+	%form{:action => url(:posts,:create, @discussion[:_id]), :method => 'POST'}
+		%textarea{:id => 'editable', :name => 'body'}
+		%input{:type => 'submit'}

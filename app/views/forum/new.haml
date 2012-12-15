@@ -1,5 +1,21 @@
 %h2
 	Create new discussion
+	-form_for :discussion, url(:forum,:create), :class => :form do |f|
+		.group
+			=f.label :title
+			=f.error_message_on :title
+			=f.text_field :title, :class => :text_field
+			%span.description Discussion Title
+		
+		.group
+			=f.label :body
+			=f.error_message_on :body
+			=f.text_area :body, :class => :text_area
+
+		.group
+			=f.submit pat(:create), :class => :button
+			=f.submit pat(:cancel), :onclick => "window.location='#{url(:forum,:index)}';return false", :class => :button
+
 %form{:action => '/forum/create', :method => 'POST'}
 	%input{ :type => 'text', :name => 'title' }
 	%br

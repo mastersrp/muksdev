@@ -1,5 +1,3 @@
-require 'digest'
-
 PadrApp.controllers :accounts do
   # get :index, :map => "/foo/bar" do
   #   session[:foo] = "bar"
@@ -20,11 +18,11 @@ PadrApp.controllers :accounts do
   #   "Hello world!"
   # end
 
-  get :index, :map => "/account" do
+  get :index do
   	render 'accounts/index'
   end
   
-  get :all, :map => "/account/all" do
+  get :all do
   	if ( Padrino.env == :development ) then
 	  	@accounts = Account.all
   		render 'accounts/all'
@@ -34,85 +32,46 @@ PadrApp.controllers :accounts do
   end
   
   get :view, :with => :id do
-  	@id = params[:id]
   	@account = Account.get( params[:id] )
   	render 'accounts/view'
   end
 
-  get :new, :map => '/account/new' do
+  get :new do
   	render 'accounts/new'
   end
 
-  post :create, :map => '/account/create' do
-  	@info = {:email => params[:email],:username => params[:username]}
-  	@hash = Digest::SHA2.hexdigest( "-#{Time.now.to_s}-#{params[:email]}-" ).upcase().to_s
-  	@info[:password] = @hash[rand(@hash.length-8),8].to_s
-	 	account = Account.create(:email => @info[:email], :name => @info[:username], :title => "Member", :password => @info[:password], :password_confirmation => @info[:password], :role => "member", :balance => 0.0 )
-	 	if account.valid?
-#	  	email(
-#	  		:from => "tcg.thegamer@gmail.com",
-#	  		:to => @info[:email],
-#	  		:subject => "Welcome!",
-#	  		:body => render('email/welcome',nil,:layout => 'email'),
-#	  		:via => :sendmail
-#	  	) # Commented out, since it doesn't seem to work very well yet.
-	  	render 'accounts/new/success'
-	  else
-	  	@error = account.errors.full_messages
-	  	render 'accounts/new/failed'
-	  end
+  post :create do
+		@account = Account.create(params[:account])
+		if @account.save
+			flash[:notice] = 'Account was successfully created.'
+			redirect url(:accounts,:view, :id => @account.id)
+		else
+			render 'accounts/new'
+		end
   end
 
-  post :update, :map => "/account/update" do
-  	if current_account == nil then
-  		redirect url(:accounts,:index)
-  	end
-  	if !current_account.has_password? params[:current_password] then
-  		redirect url(:accounts,:index)
-  	end
-  	@updatehash = {}
-  	if (current_account[:name] != params[:name]) then
-  		@account = Account.get_by_name params[:name]
-  		if @account == nil then
-	  			@updatehash[:name] = params[:name]
-	  	else
-	  		p params[:name]
-	  		p current_account[:name]
-	  		redirect url(:accounts,:index)
-	  	end
-	  end
-	  p current_account[:crypted_password]
-	  @updatehash[:email] = params[:email]
-  	if (current_account[:title] != params[:title]) then
-  		@updatehash[:title] = params[:title]
-  	end
-  	if (params[:new_password] == params[:new_password_confirm]) & ( params[:new_password] != nil ) then
-  		p "Updating password"
-  		current_account.password = params[:new_password]
-  		current_account[:password_confirmation] = params[:new_password_confirm]
-  	end
-  	if ( Padrino.env == :development ) & ( params[:balance].to_f > 0.0 ) then @updatehash[:balance] = params[:balance].to_f end
-  	current_account.attributes = @updatehash
-  	p current_account[:crypted_password]
-  	current_account.save!
-  	p current_account[:crypted_password]
-  	@error = current_account.errors.full_messages
-		render 'accounts/update/complete'
+  post :update, :with => :id do
+		@account = Account.get(params[:id])
+		if @account.update_attributes(params[:account])
+			flash[:notice] = 'Account was successfully updated.'
+			redirect url(:accounts,:view, :id => @account.id)
+		else
+			render 'accounts/index'
+		end
   end
   
-  post :login, :map => "/account/login" do
-  	@info = {:email => params[:email],
-  	 :password => params[:password]}
-  	account = Account.authenticate( @info[:email], @info[:password] )
-  	if account then
+  post :login do
+  	if aaccount = Account.authenticate( params[:email], params[:password] )
   		set_current_account(account)
-  		render 'accounts/login/success'
+  		redirect url(:home,:index)
   	else
-  		render 'accounts/login/failed'
+  		params[:email],params[:password] = h(params[:email]), h(params[:password])
+			flash[:warning] = "Login or password wrong."
+			redirect url(:accounts,:new)
   	end
   end
   
-  get :logout, :map => "/account/logout" do
+  get :logout do
   	set_current_account(nil)
   	redirect url(:home,:index)
   end

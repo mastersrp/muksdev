@@ -8,52 +8,14 @@
 			PadrApp
 	%body
 		#header
-		#content_one
-			.sidebar
-				%input{:type => 'text', :list => 'subapps', :id => 'changeApp', :onChange => "changeApp()"}
-				%datalist{:id => 'subapps' }
-					%option{:value => 'Front', :id => '/'} /
-					%option{:value => 'Forums', :id => '/forum'} /forums
-					- if current_account != nil then
-						- if current_account[:role] == "admin" then
-							%option{:value => 'Admin'}
-								\/admin
-				%br
-				- if current_account != nil then
-					=link_to current_account[:name], PadrApp.url(:accounts,:view, :id => current_account[:_id] )
-					(
-					=current_account.balance
-					BTC )
-					%br
-					=current_account[:title]
-					%br
-					- if current_account[:avatar] == nil then
-						[insert_avatar_here]
-					- else
-						=current_account[:avatar]
-					%br
-					=link_to "Control Panel", PadrApp.url(:accounts,:index)
-					%br
-					=link_to "Log Out", PadrApp.url(:accounts,:logout)
-				- else
-					=link_to "Sign Up", PadrApp.url(:accounts,:index)
-					\/
-					=link_to "Log In", PadrApp.url(:accounts,:index)
-				%br
-				%b
-					Browse Forums
-				%br
-				=link_to "All", PadrApp.url(:forum,:index)
-				%br
-				%b
-					Favorites
-				%br
-				=link_to "General", PadrApp.url(:forum,:index)
+		.flash=[:error,:warning,:notice].map { |type| flash_tag(type,:class => "message #{type}") }.join
+		=partial("base/sidebar")
 		#content
 			=yield
 		#footer
 			%p
-				Design and backend software by
+				Copyright &copy;
+				=Time.now.year
 				%a{:href => 'http://necrophcodr.co.cc'} necrohpcodr
 				
 		:javascript

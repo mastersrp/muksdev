@@ -1,0 +1,33 @@
+.sidebar
+	%input{:type => 'text', :list => 'subapps', :id => 'changeApp', :onChange => "changeApp()"}
+	%datalist{:id => 'subapps' }
+		%option{:value => 'Front', :id => '/'} /
+		%option{:value => 'Forums', :id => '/fourm'} /forums
+		-if current_account != nil then
+			-if current_account[:role] == "admin" then
+				%option{:value => 'Admin'} /admin
+	%br
+	-if current_account != nil then
+		=link_to current_account[:name], url(:accounts,:view,:id => current_account.id )
+		%br
+		=current_account[:title]
+		-if current_account[:avatar] == nil then
+			[insert_avatar_here]
+		-else
+			=current_account[:avatar]
+		%br
+		=link_to "Control Panel", url(:accounts,:index)
+		%br
+		=link_to "Log Out", url(:accounts,:logout)
+	-else
+		=link_to "Sign Up", url(:accounts,:new)
+		\/
+		=link_to "Log In", url(:accounts,:new)
+	%br
+	%b Browse Forums
+	%br
+	=link_to "All", url(:forum,:index)
+	%br
+	%b Favourites
+	%br
+	=link_to "General", url(:forum,:index)

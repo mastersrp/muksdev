@@ -2,18 +2,25 @@
 	- if current_account == nil then
 		%p
 			You are NOT currently logged in!
-			
-			.signup
-				-form_for :account, url(:accounts,:create), :class => :form do |f|
-					=partial "accounts/form", :locals => {:f => f}
 			%br
 			.login
-				-form_tag(url(:accounts,:login),:class => :form ) do
-					%label Login
-					=text_field_tag :email, :value => params[:email], :class => :text_field
-					%label Password
-					=password_field_tag :password, :value => params[:password], :class => :password_field
-					=submit_tag 'Log In', :class => :button
+				-form_tag(url(:accounts,:login),:class => 'form login' ) do
+					.group
+						%label Email
+						=text_field_tag :email, :value => params[:email], :class => :text_field
+						%span.description Enter your email here
+					.group
+						%label Password
+						=password_field_tag :password, :value => params[:password], :class => :password_field
+						%span.description Enter your password here
+					.group
+						=submit_tag 'Log In', :class => :button
 	- else
 		%p
 			You are currently logged in!
+			%br
+			.logout
+				-form_tag(url(:accounts,:logout),:class => :form ) do
+					.group
+						=submit_tag 'Log Out', :class => :button
+			

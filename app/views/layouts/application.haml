@@ -2,8 +2,11 @@
 %html
 	%head
 		%meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-		=stylesheet_link_tag 'aloha', 'desktop'
-		=javascript_include_tag 'application', 'jquery', 'require', 'aloha'
+		=stylesheet_link_tag 'desktop'
+		=javascript_include_tag 'application', 'jquery', 'require'
+		-if current_account != nil then
+			=stylesheet_link_tag 'aloha', 'aloha-core'
+			%script{:src => '/javascripts/aloha.js', 'data-aloha-plugins' => "common/ui,common/format,common/list,common/link,common/highlighteditables"}
 		%title
 			PadrApp
 	%body
@@ -17,11 +20,13 @@
 				Copyright &copy;
 				=Time.now.year
 				%a{:href => 'http://necrophcodr.co.cc'} necrohpcodr
-				
-		:javascript
-			Aloha.ready(function(){
-				Aloha.jQuery("#editable").aloha();
-			});
-			var changeApp = function(){
-				// var option = $("input#changeApp").attr("selected")
-			}
+		-if current_account != nil		
+			:javascript
+				Aloha.ready(function(){
+					Aloha.jQuery("#editable").each(function(index){
+						Aloha.jQuery(this).aloha();
+					});
+				});
+				var changeApp = function(){
+					// var option = $("input#changeApp").attr("selected")
+				}

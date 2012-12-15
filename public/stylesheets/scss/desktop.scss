@@ -6,7 +6,9 @@ body {
 	background-color: #FFFFFF;
 	margin-left: 11.8em;
 	padding: 0.5em;
+	padding-right:1em;
 	min-height: 15em;
+	min-width: 15em;
 	border-color: #0071C2;
 	border-width: 0.5em;
 	border-style: solid;
@@ -30,6 +32,29 @@ body {
 		.signup {
 			//display: none;
 		}
+	}
+}
+.group {
+	label {
+		font-weight: bold;
+	}
+	input.text_field {
+		width: 100%;
+	}
+	input.password_field {
+		width: 100%;
+	}
+	input.file_field {
+		width: 100%;
+	}
+	span.description {
+		color: gray;
+		font-style: italic;
+		font-weight: lighter;
+	}
+	textarea.text_area {
+		width: 100%;
+		height: 5em;
 	}
 }
 

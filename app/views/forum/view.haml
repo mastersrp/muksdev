@@ -1,18 +1,36 @@
-%h2
+%h2{:id => @discussion.id}
 	=@discussion[:title]
+-if current_account == @discussion.account or current_account.role == "admin" then
+	=submit_tag pat(:edit), :class => :button, :onclick => "editTitle();"
 	
 - @discussion.posts.each do |post|
-	#post
+	#post{:id => post.id}
 		%h3=link_to post.account[:name], url(:accounts, :view, :id => post.account[:_id])
-		=post[:body]
+		.content
+			=post[:body]
 		%br
 		%p
 			Posted on:
 			=post[:created_at]
 		- if current_account != nil then
-			%input{:type => 'button', :name => 'replyto', :value => 'reply'}
+			=submit_tag pat(:reply), :class => :button
+			-if current_account == post.account then
+				=submit_tag pat(:delete), :class => :button, :onclick => "window.location='#{url(:posts,:destroy,:id => post.id)}';"
+				=submit_tag pat(:edit), :class => :button, :onclick => "editPost('#{post.id}');"
 
 - if current_account != nil then
-	%form{:action => url(:posts,:create, @discussion[:_id]), :method => 'POST'}
-		%textarea{:id => 'editable', :name => 'body'}
-		%input{:type => 'submit'}
+	-form_for :post, url(:posts,:create, :id => @discussion.id), :class => :form do |f|
+		.group
+			=f.text_area :body, :class => :text_area
+
+		.group
+			=f.submit pat(:reply), :class => :button
+-if current_account != nil then
+	:javascript
+		function editPost(id) {
+			Aloha.jQuery("div#post_"+id+" > .content").aloha();
+		}
+
+		function editTitle() {
+			Aloha.jQuery("h2##{@discussion.id}").aloha();
+		}

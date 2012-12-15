@@ -1,8 +1,8 @@
 class Discussion < CouchRest::Model::Base
   unique_id :id
 
-  property :title
-  property :views
+  property :title,		String
+  property :views,		Integer
   
   belongs_to :account
   collection_of :posts

@@ -7,6 +7,8 @@ PadrApp.controllers :forum do
 
   get :view, :with => :id do
   	@discussion = Discussion.get params[:id]
+		@discussion.views = @discussion.views.to_i() + 1
+		@discussion.save!
   	render 'forum/view'
   end
   
@@ -21,7 +23,7 @@ PadrApp.controllers :forum do
 				flash[:error] = "Could not create post!"
 				redirect url(:forum,:new)
 			end
-			@discussion = Discussion.create(:title => params[:title], :account => current_account)
+			@discussion = Discussion.create(:title => params[:title], :account => current_account, :views => 0)
 			@discussion.posts << Post.get( @post.id )
 			@discussion.save!
 			if !@discussion then

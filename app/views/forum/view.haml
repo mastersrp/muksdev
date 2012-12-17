@@ -14,15 +14,16 @@
 			Posted on:
 			=post[:created_at]
 		- if current_account != nil then
-			=submit_tag pat(:reply), :class => :button
-			-if current_account == post.account then
-				=submit_tag pat(:delete), :class => :button, :onclick => "window.location='#{url(:posts,:destroy,:id => post.id)}';"
-				=submit_tag pat(:edit), :class => :button, :onclick => "editPost('#{post.id}');"
+			.post_controls
+				=submit_tag pat(:reply), :class => :button
+				-if current_account == post.account then
+					=submit_tag pat(:delete), :class => :button, :onclick => "window.location='#{url(:posts,:destroy,:id => post.id)}';"
+					=submit_tag pat(:edit), :class => :button, :onclick => "editPost('#{post.id}');"
 
 - if current_account != nil then
 	-form_for :post, url(:posts,:create, :id => @discussion.id), :class => :form do |f|
 		.group
-			=f.text_area :body, :class => :text_area
+			=f.text_area :body, :class => :text_area, :id => :editable
 
 		.group
 			=f.submit pat(:reply), :class => :button

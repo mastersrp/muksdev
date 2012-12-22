@@ -1,12 +1,14 @@
-%h2{:id => @discussion.id}
+%h2{:name => @discussion.id}
 	=@discussion[:title]
 -if current_account == @discussion.account then
 	-if current_account.role == "admin" then
 		=submit_tag pat(:edit), :class => :button, :onclick => "editTitle();"
 	
 - @discussion.posts.each do |post|
-	.post{:id => post.id}
-		%h3=link_to post.account[:name], url(:accounts, :view, :id => post.account[:_id])
+	.post{:name => post.id}
+		.user
+			%h3=link_to post.account[:name], url(:accounts, :view, :id => post.account[:_id])
+			%img{:src => "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(Account.get(post.account[:_id]).email.downcase)}?s=64"}
 		.content
 			=post[:body]
 		%br
@@ -30,9 +32,9 @@
 -if current_account != nil then
 	:javascript
 		function editPost(id) {
-			Aloha.jQuery("div.post#"+id+" > .content").aloha();
+			Aloha.jQuery("div.post[name="+id+"] > .content").aloha();
 		}
 
 		function editTitle() {
-			Aloha.jQuery("h2##{@discussion.id}").aloha();
+			Aloha.jQuery("h2[name='#{@discussion.id}']").aloha();
 		}

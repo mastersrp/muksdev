@@ -5,13 +5,6 @@
 	%span.description Ex: a simple text
 
 .group
-	=f.label :avatar
-	=f.error_message_on :avatar
-	=f.file_field :avatar, :class => :file_field
-	%span.description Image formats: JPG, PNG
-	%span.description Image sizes: 64x64
-
-.group
 	=f.label :email
 	=f.error_message_on :email
 	=f.text_field :email, :class => :text_field

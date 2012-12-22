@@ -11,10 +11,6 @@
 		=link_to current_account[:name], url(:accounts,:view,:id => current_account.id )
 		%br
 		=current_account[:title]
-		-if current_account[:avatar] == nil then
-			[insert_avatar_here]
-		-else
-			=current_account[:avatar]
 		%br
 		=link_to "Control Panel", url(:accounts,:index)
 		%br

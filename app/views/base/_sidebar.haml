@@ -1,25 +1,25 @@
 .sidebar
-	%input{:type => 'text', :list => 'subapps', :id => 'changeApp', :onChange => "changeApp()"}
-	%datalist{:id => 'subapps' }
-		%option{:value => 'Front', :id => '/'} /
-		%option{:value => 'Forums', :id => '/fourm'} /forums
-		-if current_account != nil then
-			-if current_account[:role] == "admin" then
-				%option{:value => 'Admin'} /admin
-	%br
 	-if current_account != nil then
-		=link_to current_account[:name], url(:accounts,:view,:id => current_account.id )
-		%br
-		=current_account[:title]
 		%img{:src => "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_account.email.downcase)}?s=64"}
+		%div{:class => "btn-group"}
+			%a{:class => "btn btn-primary", :href => "#{url(:accounts,:view,:id => current_account.id)}"}
+				%i{:class => "icon-user icon-white"}
+				=current_account.name
+			%a{:class => "btn btn-primary dropdown-toggle", "data-toggle" => "dropdown", :href => "#"}
+				%span{:class => "caret"}
+			%ul{:class => "dropdown-menu"}
+				%li
+					%i{:class => "i"}
+					=link_to "Control Panel", url(:accounts,:index)
+				%li
+					%i{:class => "i"}
+					=link_to "Log Out", url(:accounts,:logout)
 		%br
-		=link_to "Control Panel", url(:accounts,:index)
-		%br
-		=link_to "Log Out", url(:accounts,:logout)
+		=current_account.title
 	-else
 		=link_to "Sign Up", url(:accounts,:create)
 		\/
-		=link_to "Log In", url(:accounts,:new)
+		=link_to "Log In", "#session", "data-toggle" => "modal"
 	%br
 	%b Browse Forums
 	%br

@@ -13,7 +13,7 @@ PadrApp.controllers :forum do
   end
   
   get :new do
-  	render 'forum/new'
+  	render 'forum/_sesson'
   end
 
 	post :create do	
@@ -86,7 +86,8 @@ PadrApp.controllers :posts do
 		end
 	end  
 
-	get :destroy, :with => :id do
+	post :destroy do
+		if params.index :id == nil then nil end
 		if current_account != nil then
 			unless current_account.role == "admin" then
 				flash[:warning] = "You do not have permissions to do this!"

@@ -2,32 +2,27 @@
 	=f.label :name
 	=f.error_message_on :name
 	=f.text_field :name, :class => :text_field
-	%span.description Your display name.
 
 .group
 	=f.label :email
 	=f.error_message_on :email
 	=f.text_field :email, :class => :text_field
-	%span.description The email you wish to use. This is also used to log you in.
 
 .group
 	=f.label :password
 	=f.error_message_on :password
 	=f.password_field :password, :class => :password_field
-	%span.description Your password of choice. May contain any characters.
 
 .group
 	=f.label :password_confirmation
 	=f.error_message_on :password_confirmation
 	=f.password_field :password_confirmation, :class => :password_field
-	%span.description Please confirm your password.
 
 .group
 	=f.label :role
 	=f.error_message_on :role
 	=f.select :role, :options => access_control.roles
-	%span.description The desired role of this user.
 
 .group
-	=f.submit pat(:save), :class => :button
-	=f.submit pat(:cancel), :onclick => "window.location='#{url(:accounts,:index)}';return false", :class => :button
+	=f.submit pat(:save), :class => :btn
+	=f.submit pat(:cancel), :onclick => "window.location='#{url(:accounts,:index)}';return false", :class => :btn

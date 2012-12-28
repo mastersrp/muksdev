@@ -2,7 +2,7 @@
 	%h2
 		Discussions
 
-	=link_to "New Discussion", PadrApp.url(:forum,:new)	
+	=link_to "New Discussion", PadrApp.url(:forum,:new), :class => :btn
 	%br
 	%table
 		%tr
@@ -16,10 +16,10 @@
 		- @discussions.each do |thread|
 			%tr{:id => 'post'}
 				%td
-					=link_to thread[:title], PadrApp.url(:forum, :view, :id => thread.id)
 					-if current_account != nil then
 						-if current_account.role == "admin" then
-							=submit_tag pat(:delete), :class => :button, :onclick => "window.location='#{url(:forum,:destroy,:id => thread.id)}';"
+							=submit_tag pat(:delete), :class => "btn btn-mini btn-danger", :onclick => "window.location='#{url(:forum,:destroy,:id => thread.id)}';"
+					=link_to thread[:title], PadrApp.url(:forum, :view, :id => thread.id)
 					%br
 					Posted by
 					=link_to thread.account[:name], PadrApp.url(:accounts,:view, :id => thread.account[:_id])
@@ -30,5 +30,5 @@
 	
 	%br
 	
-	=link_to 'New Discussion', url(:forum,:new)
+	=link_to 'New Discussion', PadrApp.url(:forum,:new), :class => :btn
 	%br

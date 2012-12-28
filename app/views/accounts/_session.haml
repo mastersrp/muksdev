@@ -1,0 +1,35 @@
+.session{ :id => :session, :class => "modal hide fade", :tabindex => -1, :role => :dialog, "aria-labelledby" => "sessionLabel" }
+	.header{:class => "modal-header"}
+		%button{:type => :button, :class => :close, "data-dismiss" => :modal}
+			*
+		-if current_account == nil then
+			%h3{:id => "sessionLabel"}
+				Log In
+		-else
+			%h3{:id => "sessionLabel"}
+	- if current_account == nil then
+		%p
+			You are NOT currently logged in!
+			%br
+			.login_method
+				=link_to pat(:persona), "", :class => :btn, :onclick => "navigator.id.request();"
+				=link_to pat(:openid), "",  :class => :btn
+			%br
+			.login
+				-form_tag(url(:accounts,:login),:class => 'form login' ) do
+					.group
+						%label Email
+						=text_field_tag :email, :value => params[:email], :class => :text_field
+					.group
+						%label Password
+						=password_field_tag :password, :value => params[:password], :class => :password_field
+					.group
+						=submit_tag 'Log In', :class => :btn
+	- else
+		%p
+			You are currently logged in!
+			%br
+			.logout
+				-form_tag(url(:accounts,:logout),:class => :form ) do
+					.group
+						=submit_tag 'Log Out', :class => :btn

@@ -35,27 +35,19 @@ div#content {
 			border-right-style: dotted;
 		}
 	}
-	div.new {
-		div.login {
-			//display: none;
-		}
-		div.signup {
-			//display: none;
-		}
-	}
 }
 div.group {
 	label {
 		font-weight: bold;
 	}
 	input.text_field {
-		width: 100%;
+		width: auto;
 	}
 	input.password_field {
-		width: 100%;
+		width: auto;
 	}
 	input.file_field {
-		width: 100%;
+		width: auto;
 	}
 	span.description {
 		color: gray;
@@ -82,9 +74,14 @@ div.sidebar {
 	background-color: #FFFFFF;
 	padding: 0.5em;
 	width: 10em;
+	min-height: 15em;
 	border-color: #0071C2;
 	border-right-color: #005591;
 	border-width: 0.5em;
 	border-style: solid;
 	float: left;
+}
+
+div.session {
+	padding: 5px;
 }

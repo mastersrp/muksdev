@@ -69,6 +69,9 @@ PadrApp.controllers :accounts do
   end
   
   post :login do
+		if params.index "assertion" != nil then
+			p params["assertion"]
+		end
   	if account = Account.authenticate( params[:email], params[:password] )
   		set_current_account(account)
   		redirect url(:home,:index)

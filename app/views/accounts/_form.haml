@@ -1,28 +1,29 @@
 .group
-	=f.label :name
-	=f.error_message_on :name
-	=f.text_field :name, :class => :text_field
+	=f.label :username
+	=f.error_message_on :username
+	=f.text_field :name, :class => :span3, :placeholder => "Insert username..."
 
 .group
 	=f.label :email
 	=f.error_message_on :email
-	=f.text_field :email, :class => :text_field
+	=f.text_field :email, :class => :span3, :type => :email, :required => :required, :placeholder => "example@site.tld"
 
 .group
 	=f.label :password
 	=f.error_message_on :password
-	=f.password_field :password, :class => :password_field
+	=f.password_field :password, :class => :span3
 
 .group
 	=f.label :password_confirmation
 	=f.error_message_on :password_confirmation
-	=f.password_field :password_confirmation, :class => :password_field
+	=f.password_field :password_confirmation, :class => :span3
+-if current_account != nil then
+	-if current_account.role == "admin" then
+		.group
+			=f.label :role
+			=f.error_message_on :role
+			=f.select :role, :options => access_control.roles, :class => :span3
 
 .group
-	=f.label :role
-	=f.error_message_on :role
-	=f.select :role, :options => access_control.roles
-
-.group
-	=f.submit pat(:save), :class => :btn
+	=f.submit pat(:save), :class => "btn btn-primary"
 	=f.submit pat(:cancel), :onclick => "window.location='#{url(:accounts,:index)}';return false", :class => :btn

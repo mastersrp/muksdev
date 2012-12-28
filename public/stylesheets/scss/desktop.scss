@@ -25,38 +25,16 @@ div#content {
 				color: #FFFFFF;
 			}
 		}
-		td {
-			background-color: #FFFFFF;
-			padding:0.1em;
-			border-color: #0071C2;
-			border-width: 0.1em;
-			border-style: solid;
-			border-left-style: dotted;
-			border-right-style: dotted;
-		}
 	}
 }
 div.group {
 	label {
 		font-weight: bold;
 	}
-	input.text_field {
-		width: auto;
-	}
-	input.password_field {
-		width: auto;
-	}
-	input.file_field {
-		width: auto;
-	}
 	span.description {
 		color: gray;
 		font-style: italic;
 		font-weight: lighter;
-	}
-	textarea.text_area {
-		width: 100%;
-		height: 5em;
 	}
 }
 

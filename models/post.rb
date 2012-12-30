@@ -3,6 +3,9 @@ class Post < CouchRest::Model::Base
 
   property :body
   property :created_at
+
+	collection_of :upvotes
+	collection_of :downvotes
   
   belongs_to :account
 	belongs_to :discussion

@@ -34,7 +34,8 @@
 		function editPost(id) {
 			Aloha.jQuery("div.post[name="+id+"] > .content").aloha();
 		}
-
-		function editTitle() {
-			Aloha.jQuery("h2[name='#{@discussion.id}']").aloha();
-		}
+	-if current_account == @discussion.account then
+		:javascript
+			function editTitle() {
+				Aloha.jQuery("h2[name='#{@discussion.id}']").aloha();
+			}

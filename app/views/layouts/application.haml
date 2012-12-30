@@ -20,7 +20,11 @@
 			%small
 				Copyright &copy;
 				=Time.now.year
-				%a{:href => 'http://necrophcodr.co.cc'} necrohpcodr
+				=link_to "necrophcocr", "http://necrophcodr.herokuapp.com"
+			%br
+			%small
+				Icons Copyright &copy; 2010-2012
+				=link_to "Glyphicons", "http://glyphicons.com/"
 		:javascript
 			Aloha.ready(function(){
 				Aloha.jQuery("#editable").each(function(index){

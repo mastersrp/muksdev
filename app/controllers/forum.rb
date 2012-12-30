@@ -13,7 +13,7 @@ PadrApp.controllers :forum do
   end
   
   get :new do
-  	render 'forum/_sesson'
+  	render 'forum/new'
   end
 
 	post :create do	

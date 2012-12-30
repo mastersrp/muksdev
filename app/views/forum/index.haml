@@ -18,7 +18,7 @@
 				%td
 					-if current_account != nil then
 						-if current_account.role == "admin" then
-							=submit_tag pat(:delete), :class => "btn btn-mini btn-danger", :onclick => "window.location='#{url(:forum,:destroy,:id => thread.id)}';"
+							=submit_tag pat(:delete), :class => "btn btn-small btn-danger", :onclick => "window.location='#{url(:forum,:destroy,:id => thread.id)}';"
 					=link_to thread[:title], PadrApp.url(:forum, :view, :id => thread.id)
 					%br
 					Posted by

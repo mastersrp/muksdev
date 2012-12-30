@@ -6,13 +6,11 @@
 	.group
 		%label Title
 		=text_field_tag :title, :value => params[:title], :class => :text_field
-		%span.description Discussion Title
 	
 	.group
 		%label Body
 		=text_area_tag :body, :value => params[:body], :class => :text_area, :id => :editable
-		%span.description
 
 	.group
-		=submit_tag pat(:create), :class => :button
-		=submit_tag pat(:cancel), :onclick => "window.location='#{url(:forum,:index)}';return false", :class => :button
+		=submit_tag pat(:create), :class => "btn btn-primary"
+		=submit_tag pat(:cancel), :onclick => "window.location='#{url(:forum,:index)}';return false", :class => :btn

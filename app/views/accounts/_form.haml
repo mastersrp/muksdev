@@ -1,12 +1,21 @@
+-if current_account == nil then
+	-@name = "Insert username..."
+	-@email = "example@site.tld"
+	-@role = "Member"
+-else
+	-@name = current_account.name
+	-@email = current_account.email
+	-@role = current_account.role
+
 .group
 	=f.label :username
 	=f.error_message_on :username
-	=f.text_field :name, :class => :span3, :placeholder => "Insert username..."
+	=f.text_field :name, :class => :span3, :placeholder => @name
 
 .group
 	=f.label :email
 	=f.error_message_on :email
-	=f.text_field :email, :class => :span3, :type => :email, :required => :required, :placeholder => "example@site.tld"
+	=f.text_field :email, :class => :span3, :type => :email, :required => :required, :placeholder => @email
 
 .group
 	=f.label :password
@@ -17,12 +26,12 @@
 	=f.label :password_confirmation
 	=f.error_message_on :password_confirmation
 	=f.password_field :password_confirmation, :class => :span3
--if current_account != nil then
-	-if current_account.role == "admin" then
-		.group
-			=f.label :role
-			=f.error_message_on :role
-			=f.select :role, :options => access_control.roles, :class => :span3
+	-if current_account != nil then
+		-if current_account.role == "admin" then
+			.group
+				=f.label :role
+				=f.error_message_on :role
+				=f.select :role, :options => [@role], :class => :span3
 
 .group
 	=f.submit pat(:save), :class => "btn btn-primary"

@@ -1,0 +1,30 @@
+.blog
+	%h2
+		Blogs
+	=link_to "New Entry", PadrApp.url(:blog,:new), :class => :btn
+	%table{:class => :table}
+		%tr
+			%th
+				Title
+			%th
+				Views
+			%th
+				Date
+		-Entry.all.each do |entry|
+			%tr{:id => :entry}
+				%td
+					-if current_account != nil then
+						-if current_account.role == "admin" then
+							=submit_tag pat(:delete), :class => "btn btn-small btn-danger", :onclick => "window.location='#{PadrApp.url(:blog,:destroy,:id => entry.id)}';"
+					=link_to entry[:title], PadrApp.url(:blog,:view,:id => entry.id)
+					%br
+					Posted by
+					=link_to entry.account[:name], PadrApp.url(:accounts,:view,:id => entry.account[:_id])
+				%td
+					=entry.views
+				%td
+					=entry.created_on
+
+	%br
+	=link_to "New Entry", PadrApp.url(:blog,:new), :class => :btn
+	%br

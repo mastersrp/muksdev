@@ -1,0 +1,16 @@
+-if current_account == nil then
+	-redirect url(:accounts,:new)
+%h2
+	New Blog Entry
+-form_tag(url(:blog,:create), :class => :form ) do 
+	.group
+		%label Title
+		=text_field_tag :title, :value => params[:title], :class => :text_field
+	
+	.group
+		%label Body
+		=text_area_tag :body, :value => params[:body], :class => :text_area, :id => :editable
+
+	.group
+		=submit_tag pat(:create), :class => "btn btn-primary"
+		=submit_tag pat(:cancel), :onclick => "window.location='#{url(:blog,:index)}';return false", :class => :btn

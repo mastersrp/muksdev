@@ -33,3 +33,4 @@ gem 'padrino', '0.10.7'
 gem 'thin' # Server backend
 gem 'sass' # CSS extension
 gem 'foreman'	# Server running system
+gem 'pry', :group => "development"

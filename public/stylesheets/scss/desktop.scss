@@ -1,21 +1,20 @@
 body {
+	padding-top: 40px;
 	background-color: #FFFFFF;
 }
 
 div#content {
 	background-color: #FFFFFF;
-	margin-left: 11.8em;
 	padding: 0.5em;
-	padding-right:1em;
 	min-height: 15em;
 	min-width: 15em;
 	border-color: #0071C2;
-	border-width: 0.5em;
+	border-width: 1px;
 	border-style: solid;
 	div.forum {
 		div.post {
 			border-color: gray;
-			border-width: 0.1em;
+			border-width: 1px;
 			border-style: dotted;
 			div.user {
 				float: left;
@@ -44,7 +43,7 @@ div#footer {
 	margin-top: 0.5em;
 	border: 0 0 0 0;
 	border-top-color: #0071C2;
-	border-top-width: 0.1em;
+	border-top-width: 1px;
 	border-top-style: solid;
 }
 
@@ -55,7 +54,7 @@ div.sidebar {
 	min-height: 15em;
 	border-color: #0071C2;
 	border-right-color: #005591;
-	border-width: 0.5em;
+	border-width: 1px;
 	border-style: solid;
 	float: left;
 }

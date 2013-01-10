@@ -1,7 +1,7 @@
 .session{ :id => :session, :class => "modal hide fade", :tabindex => -1, :role => :dialog, "aria-labelledby" => "sessionLabel" }
 	.header{:class => "modal-header"}
 		%button{:type => :button, :class => :close, "data-dismiss" => :modal}
-			*
+			&times;
 		-if current_account == nil then
 			%h3{:id => "sessionLabel"}
 				Log In

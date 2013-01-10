@@ -9,22 +9,25 @@
 			%script{:src => '/javascripts/aloha.js', 'data-aloha-plugins' => "common/ui,common/format,common/list,common/link,common/highlighteditables"}
 		%title
 			PadrApp
-	%body
-		#header
-		.flash=[:error,:warning,:notice].map { |type| flash_tag(type,:class => "message #{type}") }.join
-		=partial("base/sidebar")
-		#content{ "data-spy" => "scroll", "data-target" => ".sidebar" }
-			=yield
-		=partial("accounts/session")
-		#footer
-			%small
-				Copyright &copy;
-				=Time.now.year
-				=link_to "necrophcocr", "http://necrophcodr.herokuapp.com"
-			%br
-			%small
-				Icons Copyright &copy; 2010-2012
-				=link_to "Glyphicons", "http://glyphicons.com/"
+	%body{ "data-spy" => "scroll", "data-target" => ".navbar" }
+		.container
+			#header
+				=partial "base/topbar"
+			.flash=[:error,:warning,:notice].map { |type| flash_tag(type,:class => "message #{type}") }.join
+			=#partial "base/sidebar"
+			#content
+				=yield
+			-if current_account == nil then
+				=partial("accounts/session")
+			#footer
+				%small
+					Copyright &copy;
+					=Time.now.year
+					=link_to "necrophcocr", "http://necrophcodr.herokuapp.com"
+				%br
+				%small
+					Icons Copyright &copy; 2010-2012
+					=link_to "Glyphicons", "http://glyphicons.com/"
 		:javascript
 			Aloha.ready(function(){
 				Aloha.jQuery("#editable").each(function(index){

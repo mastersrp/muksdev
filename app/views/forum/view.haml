@@ -6,27 +6,29 @@
 	
 - @discussion.posts.each do |post|
 	.post{:name => post.id}
-		.user
-			%h3=link_to post.account[:name], url(:accounts, :view, :id => post.account[:_id])
-			%img{:src => "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(Account.get(post.account[:_id]).email.downcase)}?s=64?r=pg"}
-		.content
-			=post[:body]
-		%br
-		%p
-			Posted on:
-			=post[:created_at]
-		- if current_account != nil then
-			.post_controls
-				=link_to pat(:reply), "#", :class => :btn, :onclick => ""
+		.container-fluid
+			.row-fluid
+				.user.span2
+					%h3=link_to post.account[:name], url(:accounts, :view, :id => post.account[:_id])
+					%img{:src => "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(Account.get(post.account[:_id]).email.downcase)}?s=64?r=pg"}
+				.content.span8
+					=post[:body]
+			%br
+			%p
+				Posted on:
+				=post[:created_at]
+			- if current_account != nil then
+				.post_controls.btn-group
+					=link_to pat(:reply), "#", :class => :btn, :onclick => ""
 				-if current_account == post.account then
 					=link_to pat(:delete), "#", :class => :btn, :onclick => "post_to_url(#{url(:posts,:destroy)},{'id':'#{post.id})';"
 					=link_to pat(:edit), "#", :class => :btn, :onclick => "editPost('#{post.id}');"
 
-- if current_account != nil then
+-if current_account != nil then
 	-form_for :post, url(:posts,:create, :id => @discussion.id), :class => :form do |f|
 		.group
 			=f.text_area :body, :class => :text_area, :id => :editable
-
+		
 		.group
 			=f.submit pat(:save), :class => "btn btn-primary"
 -if current_account != nil then

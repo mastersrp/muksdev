@@ -13,8 +13,8 @@
 			%th
 				Views
 	
-		- @discussions.each do |thread|
-			%tr{:id => 'post'}
+		-@discussions.each do |thread|
+			%tr{:id => :post}
 				%td
 					-if current_account != nil then
 						-if current_account.role == "admin" then
@@ -30,5 +30,5 @@
 	
 	%br
 	
-	=link_to 'New Discussion', PadrApp.url(:forum,:new), :class => :btn
+	=link_to "New Discussion", PadrApp.url(:forum,:new), :class => :btn
 	%br

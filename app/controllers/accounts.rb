@@ -36,21 +36,23 @@ PadrApp.controllers :accounts do
   	render 'accounts/view'
   end
 
-  get :new do
-  	render 'accounts/new'
-  end
+	get :new do
+		# Set up temporary redirect. Clean up this mess!
+		redirect url(:accounts,:create)
+	end
 
 	get :create do
 		render 'accounts/create'
 	end
 
   post :create do
+		params[:account][:role] = :user
 		@account = Account.create(params[:account])
-		if @account.save
+		if @account.save!
 			flash[:notice] = 'Account was successfully created.'
 			redirect url(:accounts,:view, :id => @account.id)
 		else
-			render 'accounts/new'
+			render 'accounts/create'
 		end
   end
 

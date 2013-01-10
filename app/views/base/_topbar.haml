@@ -1,0 +1,31 @@
+.topbar.navbar.navbar-fixed-top
+	.navbar-inner
+		=link_to "Title", PadrApp.url(:home,:index), :class => :brand
+		%ul{:class => :nav}
+			-if current_account != nil then
+				-if current_account[:role] == "admin" then
+					%li
+						=link_to "Admin", "/admin"
+			%li
+				=link_to "Home", PadrApp.url(:home,:index)
+			%li
+				=link_to "Blogs", PadrApp.url(:blog,:browse)
+			%li
+				=link_to "Forum Sections", PadrApp.url(:forum,:index)
+			%li{:class => :dropdown}
+				%a{:class => "dropdown-toggle", "data-toggle" => "dropdown", :href => "#"}
+					-if current_account != nil then
+						=current_account.name
+					-else
+						Account
+					%b{:class => :caret}
+				%ul{:class => "dropdown-menu"}
+					-if current_account != nil then
+						%li
+							=link_to "Blog",	PadrApp.url(:blog,:index)
+							=link_to "Control Panel", PadrApp.url(:accounts,:index)
+							=link_to "Log Out", PadrApp.url(:accounts,:logout)
+					-else
+						%li
+							=link_to "Log In", "#session", "data-toggle" => "modal", :role => :button
+							=link_to "Create Account", PadrApp.url(:accounts,:create)

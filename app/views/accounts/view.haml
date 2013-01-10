@@ -1,4 +1,4 @@
-- if @account == nil
+- if current_account == nil
 	%h2
 		The account you requested could not be found!
 	%h3
@@ -6,10 +6,14 @@
 		=params[:id]
 - else
 	%h2
-		=@account[:name]
+		=current_account[:name]
+	=link_to "Blog", PadrApp.url(:blog,:index)
 	%p
 		Title:
-		=@account[:title]
+		-if current_account[:title] == nil then
+			=pat(current_account[:role])
+		-else
+			=current_account[:title]
 	%p
 		Email: 
 		=@account[:email]

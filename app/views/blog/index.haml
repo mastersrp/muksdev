@@ -1,0 +1,14 @@
+.blog
+	=link_to "New Entry", PadrApp.url(:blog,:new), :class => "btn btn-link"
+	%br
+	-@entries = Entry.all.each {|entry| entry.account[:_id] == current_account[:_id]}
+	-@entries.each do |entry|
+		.entry
+			=link_to entry[:title], PadrApp.url(:blog,:view,:id => entry.id)
+			.content
+				=entry[:body]
+			Posted on
+			=entry[:created_on].to_s
+	%br
+	=link_to "New Entry", PadrApp.url(:blog,:new), :class => "btn btn-link"
+	%br

@@ -48,7 +48,8 @@ PadrApp.controllers :accounts do
   post :create do
 		params[:account][:role] = :user
 		@account = Account.create(params[:account])
-		if @account.save!
+		if @account.save
+			@account.save!
 			flash[:notice] = 'Account was successfully created.'
 			redirect url(:accounts,:view, :id => @account.id)
 		else
@@ -58,9 +59,9 @@ PadrApp.controllers :accounts do
 
   post :update, :with => :id do
 		@account = Account.get(params[:id])
-		if @account != current_account and current_account[:role] != "admin" then
+		if @account != current_account then
 			flash[:notice] = "You do not have permission to change this account."
-			redirect url(:accounts,:view,:id => @account.id)
+			redirect url(:accounts,:view,:id => @account.id)	
 		end
 		if @account.update_attributes(params[:account])
 			flash[:notice] = 'Account was successfully updated.'

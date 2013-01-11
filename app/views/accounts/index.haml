@@ -4,5 +4,5 @@
 
 	=link_to "View profile", PadrApp.url(:accounts,:view,:id => current_account[:_id]), :class => "btn btn-link"
 
-	-form_for :account, url(:accounts,:update,:id => current_account.id), :method => :put, :class => :form do |f|
+	-form_for :account, url(:accounts,:update,:id => current_account.id), :method => :post, :class => :form do |f|
 		=partial "accounts/form", :locals => {:f => f}

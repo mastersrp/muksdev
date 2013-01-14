@@ -8,8 +8,8 @@
 	.container-fluid
 		.row-fluid
 			.user.span2
-				%h3=link_to @entry.account[:name], url(:accounts, :view, :id => @entry.account[:_id])
-				%img{:src => "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(Account.get(@entry.account[:_id]).email.downcase)}?s=64?r=pg"}
+				-@account = @entry.account
+				=partial "base/user"
 			.content.span8
 				=@entry[:body]
 		%br

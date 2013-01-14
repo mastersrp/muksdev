@@ -3,7 +3,7 @@
 		=link_to "Title", PadrApp.url(:home,:index), :class => :brand
 		%ul{:class => :nav}
 			-if current_account != nil then
-				-if current_account[:role] == "admin" then
+				-if current_account.has_permission?("admin") then
 					%li
 						=link_to "Admin", "/admin"
 			%li

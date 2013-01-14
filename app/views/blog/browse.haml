@@ -14,7 +14,7 @@
 			%tr{:id => :entry, :onclick => "window.location='#{PadrApp.url(:blog,:view,:id => entry.id)}';"}
 				%td
 					-if current_account != nil then
-						-if current_account.role == "admin" then
+						-if current_account.has_permission?("blog_delete") then
 							=submit_tag pat(:delete), :class => "btn btn-small btn-danger", :onclick => "window.location='#{PadrApp.url(:blog,:destroy,:id => entry.id)}';"
 					=link_to entry[:title], PadrApp.url(:blog,:view,:id => entry.id)
 					%br

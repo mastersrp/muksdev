@@ -5,21 +5,21 @@ class Account < CouchRest::Model::Base
   property :title,						String
   property :email,						String
   property :crypted_password,	String
-  property :role,							String
+	property :role,							String #TODO: Get rid of this.
+  property :permissions,			String
   property :balance,					Float
   property :created_at,				DateTime
 
   view_by :email
 
   # Validations
-  validates_presence_of     :email, :role
+  validates_presence_of     :email, :permissions
   validates_presence_of     :password,                   :if => :password_required
   validates_presence_of     :password_confirmation,      :if => :password_required
   validates_length_of       :password, :within => 4..40, :if => :password_required
   validates_confirmation_of :password,                   :if => :password_required
   validates_length_of       :email,    :within => 3..100
   validates_format_of       :email,    :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of       :role,     :with => /[A-Za-z]/
 	validates_uniqueness_of		:name
   validate                  :unique_email_validator
 
@@ -37,6 +37,14 @@ class Account < CouchRest::Model::Base
   def has_password?(password)
     ::BCrypt::Password.new(crypted_password) == password
   end
+
+	def has_permission?(permission)
+		if permissions.split(" ").index(permission) == nil then
+			false
+		else
+			true
+		end
+	end
 
   ##
   # This method is used by AuthenticationHelper

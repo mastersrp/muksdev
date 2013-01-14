@@ -23,6 +23,12 @@
 	%span.description Ex: a simple text
 
 .group
+	=f.label :permissions
+	=f.error_message_on :permissions
+	=f.text_field :permissions, :class => :text_field
+	%span.description
+
+.group
 	=f.label :role
 	=f.error_message_on :role
 	=f.select :role, :options => access_control.roles

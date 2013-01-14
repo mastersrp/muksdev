@@ -1,5 +1,5 @@
 %h3=link_to @account[:name], url(:accounts, :view, :id => @account[:_id])
 %img{:src => "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(Account.get(@account[:_id]).email.downcase)}?s=64?r=pg"}
--if @account[:role] == "admin" then
+-if @account.has_permission?("admin") then
 	%span{:class => "label label-important"}
 		Admin

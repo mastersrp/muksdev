@@ -1,7 +1,7 @@
 %h2{:name => @discussion.id}
 	=@discussion[:title]
 -if current_account == @discussion.account then
-	-if current_account.role == "admin" then
+	-if current_account.has_permission?("thread_edit_title") then
 		=link_to pat(:edit), "", :class => :btn, :onclick => "editTitle();"
 	
 - @discussion.posts.each do |post|
@@ -20,7 +20,7 @@
 			- if current_account != nil then
 				.post_controls.btn-group
 					=link_to pat(:reply), "#", :class => :btn, :onclick => ""
-				-if current_account == post.account then
+				-if current_account == post.account or current_account.has_permission?("thread_edit_posts") then
 					=link_to pat(:delete), "#", :class => :btn, :onclick => "post_to_url(#{url(:posts,:destroy)},{'id':'#{post.id})';"
 					=link_to pat(:edit), "#", :class => :btn, :onclick => "editPost('#{post.id}');"
 

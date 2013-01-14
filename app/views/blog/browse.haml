@@ -2,7 +2,7 @@
 	%h2
 		Blogs
 	=link_to "New Entry", PadrApp.url(:blog,:new), :class => :btn
-	%table{:class => :table}
+	%table{:class => "table table-hover"}
 		%tr
 			%th
 				Title
@@ -11,7 +11,7 @@
 			%th
 				Date
 		-Entry.all.each do |entry|
-			%tr{:id => :entry}
+			%tr{:id => :entry, :onclick => "window.location='#{PadrApp.url(:blog,:view,:id => entry.id)}';"}
 				%td
 					-if current_account != nil then
 						-if current_account.role == "admin" then

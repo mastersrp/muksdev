@@ -10,21 +10,26 @@
 			%ul{:class => "dropdown-menu"}
 				%li
 					%i{:class => "i"}
-					=link_to "Control Panel", url(:accounts,:index)
+					=link_to "Control Panel", PadrApp.url(:accounts,:index)
 				%li
 					%i{:class => "i"}
-					=link_to "Log Out", url(:accounts,:logout)
+					=link_to "Log Out", PadrApp.url(:accounts,:logout)
 		%br
 		=current_account.title
 	-else
-		=link_to "Sign Up", url(:accounts,:create)
+		=link_to "Sign Up", PadrApp.url(:accounts,:create)
 		\/
 		=link_to "Log In", "#session", "data-toggle" => "modal"
 	%br
-	%b Browse Forums
-	%br
-	=link_to "All", url(:forum,:index)
-	%br
-	%b Favourites
-	%br
-	=link_to "General", url(:forum,:index)
+	%dl
+		%dt
+			Browse Forums
+		%dt
+			=link_to "All", PadrApp.url(:forum,:index), :class => "btn btn-link"
+		%dt{:class => :divider}
+		%dt
+			=link_to "Blogs", PadrApp.url(:blog,:index), :class => "btn btn-link"
+		%dt
+			Favourites
+		%dt
+			=link_to "General", PadrApp.url(:forum,:index), :class => "btn btn-link"

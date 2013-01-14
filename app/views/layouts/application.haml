@@ -2,7 +2,7 @@
 %html
 	%head
 		%meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-		=stylesheet_link_tag 'desktop',"bootstrap.min"
+		=stylesheet_link_tag "bootstrap.min", "desktop"
 		=javascript_include_tag 'application', 'jquery', 'require', "bootstrap.min"
 		-if current_account != nil then
 			=stylesheet_link_tag 'aloha', 'aloha-core'

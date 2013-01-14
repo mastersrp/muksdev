@@ -1,6 +1,8 @@
 body {
 	padding-top: 40px;
 	background-color: #FFFFFF;
+	// Below url is a placeholder. Hosted on another site of mine.
+	background: url(http://mastersrp.kodingen.com/img/bg_yellow.png) repeat;
 }
 
 div#content {
@@ -42,13 +44,13 @@ div#footer {
 	padding: 0.2em;
 	margin-top: 0.5em;
 	border: 0 0 0 0;
-	border-top-color: #0071C2;
-	border-top-width: 1px;
-	border-top-style: solid;
+	border-color: #0071C2;
+	border-width: 1px;
+	border-style: solid;
 }
 
 div.sidebar {
-	background-color: #FFFFFF;
+	//background-color: #FFFFFF;
 	padding: 0.5em;
 	width: 10em;
 	min-height: 15em;
@@ -56,6 +58,7 @@ div.sidebar {
 	border-right-color: #005591;
 	border-width: 1px;
 	border-style: solid;
+	clear: all;
 	float: left;
 }
 

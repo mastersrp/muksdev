@@ -5,6 +5,11 @@ PadrApp.controllers :forum do
   	render 'forum/index'
   end
 
+	get :browse do
+		@discussions = Discussion.all
+		render 'forum/browse'
+	end
+
   get :view, :with => :id do
   	@discussion = Discussion.get params[:id]
 		@discussion.views = @discussion.views.to_i() + 1

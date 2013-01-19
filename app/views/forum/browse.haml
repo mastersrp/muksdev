@@ -1,0 +1,33 @@
+.forum
+	%h2
+		Discussions
+	
+	=link_to "New Discussion", PadrApp.url(:forum,:new), :class => :btn
+	%table{:class => "table table-hover"}
+		%tr
+			%th
+				Title
+			%th
+				Posts
+			%th
+				Views
+	
+		-@discussions.each do |thread|
+			%tr{:id => :post, :onclick => "window.location='#{PadrApp.url(:forum,:view,:id => thread.id)}';"}
+				%td
+					-if current_account != nil then
+						-if current_account.has_permission?("thread_delete") then
+							=submit_tag pat(:delete), :class => "btn btn-small btn-danger", :onclick => "window.location='#{url(:forum,:destroy,:id => thread.id)}';"
+					=link_to thread[:title], PadrApp.url(:forum, :view, :id => thread.id)
+					%br
+					Posted by
+					=link_to thread.account[:name], PadrApp.url(:accounts,:view, :id => thread.account[:_id])
+				%td
+					=thread.posts.count
+				%td
+					=thread.views
+	
+	%br
+	
+	=link_to "New Discussion", PadrApp.url(:forum,:new), :class => :btn
+	%br

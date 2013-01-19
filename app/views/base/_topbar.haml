@@ -13,10 +13,24 @@
 								=link_to "Users", PadrApp.url(:accounts,:all)
 			%li
 				=link_to "Home", PadrApp.url(:home,:index)
-			%li
-				=link_to "Blogs", PadrApp.url(:blog,:browse)
-			%li
-				=link_to "Forum Sections", PadrApp.url(:forum,:index)
+			%li{:class => :dropdown}
+				%a{:class => "dropdown-toggle", "data-toggle" => "dropdown", :href => "#"}
+					Blogs
+					%b{:class => :caret}
+				%ul{:class => "dropdown-menu"}
+					%li
+						=link_to "Browse", PadrApp.url(:blog,:browse)
+						%form{:class => "navbar-search"}
+							%input{:type => :text, :class => "search-query", :placeholder => pat(:search)}
+			%li{:class => :dropdown}
+				%a{:class => "dropdown-toggle", "data-toggle" => "dropdown", :href => "#"}
+					Discussions
+					%b{:class => :caret}
+				%ul{:class => "dropdown-menu"}
+					%li
+						=link_to "Browse", PadrApp.url(:forum,:browse)
+						%form{ :class => "navbar-search pull-left"}
+							%input{:type => :text, :class => "search-query", :placeholder => pat(:search)}
 			%li{:class => :dropdown}
 				%a{:class => "dropdown-toggle", "data-toggle" => "dropdown", :href => "#"}
 					-if current_account != nil then
@@ -32,5 +46,5 @@
 							=link_to "Log Out", PadrApp.url(:accounts,:logout)
 					-else
 						%li
-							=link_to "Log In", "#session", "data-toggle" => "modal", :role => :button
+							=link_to "Log In", "#session", "data-toggle" => "modal"
 							=link_to "Create Account", PadrApp.url(:accounts,:create)

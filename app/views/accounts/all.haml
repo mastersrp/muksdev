@@ -7,7 +7,8 @@
 	-Account.all.each do |account|
 		%tr{:id => :user, :onclick => "window.location='#{PadrApp.url(:accounts,:view,:id => account.id)}';"}
 			%td
+				%img{:src => "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(Account.get(account[:_id]).email.downcase)}?s=20?r=pg"}
 				=link_to account.name, PadrApp.url(:accounts,:view,:id => account.id)
 			%td
-				account.id
+				=account[:_id]
 	%br

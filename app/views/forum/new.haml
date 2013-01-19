@@ -2,15 +2,22 @@
 	-redirect url(:accounts,:new)
 %h2
 	Create new discussion
--form_tag(url(:forum,:create), :class => :form ) do 
+-form_for :discussion, PadrApp.url(:forum,:create), :class => :form do |f|
 	.group
-		%label Title
-		=text_field_tag :title, :value => params[:title], :class => :text_field
-	
-	.group
-		%label Body
-		=text_area_tag :body, :value => params[:body], :class => :text_area, :id => :editable
+		=f.label :section
+		=f.error_message_on :section
+		=f.select :section, :options => Section.all, :class => :span3
 
 	.group
-		=submit_tag pat(:create), :class => "btn btn-primary"
-		=submit_tag pat(:cancel), :onclick => "window.location='#{url(:forum,:index)}';return false", :class => :btn
+		=f.label :title
+		=f.error_message_on :title
+		=f.text_field :title, :class => :text_field
+	
+	.group
+		=f.label :body
+		=f.error_message_on :body
+		=f.text_area :body, :class => :text_area
+
+	.group
+		=f.submit pat(:create), :class => "btn btn-primary"
+		=f.submit pat(:cancel), :onclick => "window.location='#{url(:forum,:index)}';return false", :class => :btn

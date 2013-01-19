@@ -33,5 +33,6 @@ end
 # Mounts the core application for this project
 Padrino.mount("PadrApp").to('/')
 
-Padrino.mount("Admin").to("/admin")
+# We do not currently require a admin page, as mostly everything can be changed without any.
+#Padrino.mount("Admin").to("/admin")
 

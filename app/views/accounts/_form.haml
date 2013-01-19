@@ -27,12 +27,34 @@
 	=f.error_message_on :password_confirmation
 	=f.password_field :password_confirmation, :class => :span3
 	-if current_account != nil then
-		-if current_account.role == "admin" then
-			.group
-				=f.label :role
-				=f.error_message_on :role
-				=f.select :role, :options => [@role], :class => :span3
+		.group
+			=f.label :permissions
+			=f.error_message_on :permissions
+			=f.select :permissions, :options => current_account.permissions.split(" ").sort, :class => :span3
+
+			-if current_account.has_permission? "admin" then
+				=f.text_field :additional_perms, :class => :span3
+				%br
+				=link_to "Add Permission(s)", :class => "btn", :onclick => "addPerm();"
+
+
+%br			
 
 .group
 	=f.submit pat(:save), :class => "btn btn-primary"
 	=f.submit pat(:cancel), :onclick => "window.location='#{url(:accounts,:index)}';return false", :class => :btn
+
+-if current_account != nil then
+	-if current_account.has_permission? "admin" then
+		:javascript
+			var addPerm = function() {
+				var addPerms = $("input#account_additional_perms").val();
+				var permissionSelect = $("select#account_permissions");
+				var perms = addPerms.split(" ");
+
+				var addEachPerm = function(elm,index,array) {
+					$("select#account_permissions > option").first().clone().val(elm).text(elm).appendTo(permissionSelect);
+				}
+
+				perms.forEach(addEachPerm);
+			}

@@ -5,15 +5,13 @@
 		Given id:
 		=params[:id]
 - else
-	%h2
-		=current_account[:name]
-	=link_to "Blog", PadrApp.url(:blog,:index)
-	%p
-		Title:
-		-if current_account[:title] == nil then
-			=pat(current_account[:role])
-		-else
-			=current_account[:title]
-	%p
-		Email: 
-		=@account[:email]
+	.span3
+		=partial "base/user"
+	%br
+	.span3
+		=link_to "Blog", PadrApp.url(:blog,:index)
+	%br
+	.span3
+		%p
+			Email: 
+			=@account[:email]

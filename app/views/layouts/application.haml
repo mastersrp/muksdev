@@ -1,16 +1,16 @@
 !!!
-%html
+%html{ "ng-app" => "" }
 	%head
 		%meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
 		=stylesheet_link_tag "bootstrap.min", "desktop"
-		=javascript_include_tag 'application', 'jquery', 'require', "bootstrap.min"
+		=javascript_include_tag 'application', 'jquery', 'require', "bootstrap.min", "angular.min"
 		-if current_account != nil then
-			=stylesheet_link_tag 'aloha', 'aloha-core'
-			%script{:src => '/javascripts/aloha.js', 'data-aloha-plugins' => "common/ui,common/format,common/list,common/link,common/highlighteditables"}
+			-#stylesheet_link_tag 'aloha', 'aloha-core'
+			-#%script{:src => '/javascripts/aloha.js', 'data-aloha-plugins' => "common/ui,common/format,common/list,common/link,common/highlighteditables"}
 		%title
 			PadrApp
-	%body{ "data-spy" => "scroll", "data-target" => ".navbar" }
-		.container
+	%body
+		.container{ "data-spy" => "scroll", "data-target" => ".navbar" }
 			#header
 				=partial "base/topbar"
 			.flash=[:error,:warning,:notice].map { |type| flash_tag(type,:class => "message #{type}") }.join
@@ -29,13 +29,13 @@
 					Icons Copyright &copy; 2010-2013
 					=link_to "Glyphicons", "http://glyphicons.com/"
 		:javascript
-			Aloha.ready(function(){
+			/*Aloha.ready(function(){
 				Aloha.jQuery("#editable").each(function(index){
 					Aloha.jQuery(this).aloha();
 				});
-			});
+			});*/
 			var changeApp = function() {}
-			var post_to_url(path,params,method) {
+			var post_to_url = function(path,params,method) {
 				method = method || "post";
 				var form = document.createElement("form");
 				form.setAttribute("method",method);
@@ -55,6 +55,7 @@
 				form.submit();
 			}
 
+			/*
 			navigator.id.watch({
 				onlogin: function(assertion) {
 					post_to_url("/accounts/login",{"assertion":assertion});
@@ -62,5 +63,5 @@
 				onlogout: function() {
 					window.location = "/accounts/logout";
 				}
-			});
+			});*/
 		=javascript_include_tag 'https://login.persona.org/include.js'

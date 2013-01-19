@@ -7,29 +7,34 @@
 				Log In
 		-else
 			%h3{:id => "sessionLabel"}
-	- if current_account == nil then
+	-if current_account == nil then
 		%p
 			You are NOT currently logged in!
-			%br
-			.login_method
-				=link_to pat(:persona), "", :class => :btn, :onclick => "navigator.id.request();"
-				=link_to pat(:openid), "",  :class => :btn
-			%br
-			.login
-				-form_tag(url(:accounts,:login),:class => 'form login' ) do
-					.group
-						%label Email
-						=text_field_tag :email, :value => params[:email], :class => :span3, :type => :email, :required => :required
-					.group
-						%label Password
-						=password_field_tag :password, :value => params[:password], :class => :span3
-					.group
-						=submit_tag 'Log In', :class => :btn
-	- else
+		%br
+		.login_method
+			=#link_to pat(:persona), "", :class => :btn, :onclick => "navigator.id.request();"
+			=#link_to pat(:openid), "",  :class => :btn
+		%br
+		.login
+			-form_for :account, PadrApp.url(:accounts,:login),:class => :form do |f|
+				.group
+					=f.label :email
+					=f.error_message_on :email
+					=f.text_field :email, :class => :span3, :required => :required
+				.group
+					=f.label :password
+					=f.error_message_on :password
+					=f.password_field :password, :class => :span3
+
+				.group
+					=f.submit 'Log In', :class => "btn btn-primary"
+					=f.submit pat(:cancel), :class => :btn, "data-dismiss" => :modal, "aria-hidden" => true
+	-else
 		%p
 			You are currently logged in!
-			%br
-			.logout
-				-form_tag(url(:accounts,:logout),:class => :form ) do
-					.group
-						=submit_tag 'Log Out', :class => :btn
+		%br
+		.logout
+			-form_for :account, PadrApp.url(:accounts,:logout),:class => :form do
+				.group
+					=f.submit 'Log Out', :class => "btn btn-primary"
+					=f.submit pat(:cancel), :class => :btn, "data-dismiss" => :modal, "aria-hidden" => true

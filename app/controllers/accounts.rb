@@ -23,12 +23,8 @@ PadrApp.controllers :accounts do
   end
   
   get :all do
-  	if ( Padrino.env == :development ) then
-	  	@accounts = Account.all
-  		render 'accounts/all'
-  	else
-  		redirect url(:home,:index)
-  	end
+	 	@accounts = Account.all
+  	render 'accounts/all'
   end
   
   get :view, :with => :id do
@@ -48,7 +44,7 @@ PadrApp.controllers :accounts do
   post :create do
 		params[:account][:role] = :user
 		@account = Account.create(params[:account])
-		if @account.save
+		if @account.save then
 			@account.save!
 			flash[:notice] = 'Account was successfully created.'
 			redirect url(:accounts,:view, :id => @account.id)
@@ -72,10 +68,11 @@ PadrApp.controllers :accounts do
   end
   
   post :login do
-		if params.index "assertion" != nil then
-			p params["assertion"]
-		end
-  	if account = Account.authenticate( params[:email], params[:password] )
+		# Slight hackish workaround.
+		# TODO: Make pretty and readable.
+		params[:email] = params[:account][:email]
+		params[:password] = params[:account][:password]
+  	if account = Account.authenticate( params[:email], params[:password] ) then
   		set_current_account(account)
   		redirect url(:home,:index)
   	else

@@ -1,0 +1,25 @@
+.discussion{:id => :discussion, :class => "modal hide fade", :tabindex => -1, :role => :dialog, "aria-labelledby" => "discussionLabel" }
+	.header{:class => "modal-header"}
+		%button{:type => :button, :class => :close, "data-dismiss" => "modal"}
+			&times;
+		%h3{:id => "discussionLabel"}
+			Create New Discussion
+	-form_for :discussion, PadrApp.url(:forum,:create), :class => :form do |f|
+		.group
+			=f.label :section
+			=f.error_message_on :section
+			=f.select :section, :options => Section.all, :class => :span3
+
+		.group
+			=f.label :title
+			=f.error_message_on :title
+			=f.text_field :title, :class => :span3
+	
+		.group
+			=f.label :body
+			=f.error_message_on :body
+			=f.text_area :body, :class => :span3
+
+		.group
+			=f.submit pat(:create), :class => "btn btn-primary"
+			=f.submit pat(:cancel), :class => :btn, "data-dismiss" => :modal, "aria-hidden" => true

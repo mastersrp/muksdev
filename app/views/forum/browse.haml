@@ -1,8 +1,8 @@
 .forum
 	%h2
 		Discussions
-	
-	=link_to "New Discussion", PadrApp.url(:forum,:new), :class => :btn
+	-if current_account != nil then
+		=link_to "New Discussion", "#discussion", :class => :btn, "data-toggle" => :modal
 	%table{:class => "table table-hover"}
 		%tr
 			%th
@@ -29,5 +29,9 @@
 	
 	%br
 	
-	=link_to "New Discussion", PadrApp.url(:forum,:new), :class => :btn
+	-if current_account != nil then
+		=link_to "New Discussion", "#discussion", :class => :btn, "data-toggle" => :modal
 	%br
+
+-if current_account != nil then
+	=partial "forum/new"

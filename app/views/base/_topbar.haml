@@ -21,7 +21,7 @@
 					%li
 						=link_to "Browse", PadrApp.url(:blog,:browse)
 						%form{:class => "navbar-search"}
-							%input{:type => :text, :class => "search-query", :placeholder => pat(:search)}
+							%input{:type => :text, :class => "search-query", :placeholder => "Search ... NOT IMPLEMENTED"}
 			%li{:class => :dropdown}
 				%a{:class => "dropdown-toggle", "data-toggle" => "dropdown", :href => "#"}
 					Discussions
@@ -30,7 +30,7 @@
 					%li
 						=link_to "Browse", PadrApp.url(:forum,:browse)
 						%form{ :class => "navbar-search pull-left"}
-							%input{:type => :text, :class => "search-query", :placeholder => pat(:search)}
+							%input{:type => :text, :class => "search-query", :placeholder => "Search ... NOT IMPLEMENTED"}
 			%li{:class => :dropdown}
 				%a{:class => "dropdown-toggle", "data-toggle" => "dropdown", :href => "#"}
 					-if current_account != nil then

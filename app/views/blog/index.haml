@@ -1,8 +1,9 @@
 .blog
-	=link_to "New Entry", PadrApp.url(:blog,:new), :class => :btn
+	=link_to "New Entry", "#blog", :class => :btn, "data-toggle" => :modal
 	%br
-	-@entries = Entry.all.each {|entry| entry.account[:_id] == current_account[:_id]}
-	-@entries.each do |entry|
+
+	-Entry.all.each do |entry|
+		-if entry.account[:_id] != current_account[:_id] then next end
 		.entry
 			=link_to entry[:title], PadrApp.url(:blog,:view,:id => entry.id)
 			.content
@@ -10,5 +11,7 @@
 			Posted on
 			=entry[:created_on].to_s
 	%br
-	=link_to "New Entry", PadrApp.url(:blog,:new), :class => :btn
+	=link_to "New Entry", "#blog", :class => :btn, "data-toggle" => :modal
 	%br
+
+=partial "blog/new"

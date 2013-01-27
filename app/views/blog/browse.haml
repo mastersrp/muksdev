@@ -2,7 +2,7 @@
 	%h2
 		Blogs
 	-if current_account != nil then	
-		=link_to "New Entry", "#blog", :class => :btn
+		=link_to "New Entry", "#blog", :class => :btn, "data-toggle" => :modal
 	%table{:class => "table table-hover"}
 		%tr
 			%th
@@ -28,5 +28,6 @@
 
 	%br
 	-if current_account != nil then
-		=link_to "New Entry", "#blog", :class => :btn
+		=link_to "New Entry", "#blog", :class => :btn, "data-toggle" => :modal
 	%br
+=partial "blog/new"

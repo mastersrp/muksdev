@@ -12,6 +12,9 @@
 	%body
 		.container{ "data-spy" => "scroll", "data-target" => ".navbar" }
 			#header
+				%a{:href => '/'}
+					%img{:src => "http://placehold.it/150x150", :class => "img-rounded"}
+			#navbar
 				=partial "base/topbar"
 			.flash=[:error,:warning,:notice].map { |type| flash_tag(type,:class => "message #{type}") }.join
 			=#partial "base/sidebar"

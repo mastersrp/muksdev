@@ -28,6 +28,7 @@ PadrApp.controllers :forum do
 				flash[:error] = "Could not create post!"
 				redirect url(:forum,:new)
 			end
+			@section = Section.find( params[:section] )
 			@discussion = Discussion.create(:title => params[:title], :account => current_account, :views => 0)
 			@post[:discussion] = @discussion.id
 			@post.save!
@@ -36,8 +37,10 @@ PadrApp.controllers :forum do
 			if !@discussion then
 				flash[:error] = "Could not create new discussion!"
 				redirect url(:forum,:new)
-			 end
-       redirect url(:forum,:view,:id => @discussion.id)
+			end
+			@section.discussions << @discussion
+			@section.save!
+      redirect url(:forum,:view,:id => @discussion.id)
     else
 			redirect url(:accounts,:new)
   	end

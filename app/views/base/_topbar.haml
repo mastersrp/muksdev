@@ -1,6 +1,5 @@
-.topbar.navbar.navbar-fixed-top
+.topbar.navbar
 	.navbar-inner
-		=link_to "HOME", PadrApp.url(:home,:index), :class => "brand pull-left"
 		%ul{:class => :nav}
 			-if current_account != nil then
 				-if current_account.has_permission? "admin" then
@@ -20,6 +19,7 @@
 				%ul{:class => "dropdown-menu"}
 					%li
 						=link_to "Browse", PadrApp.url(:blog,:browse)
+					%li
 						%form{:class => "navbar-search"}
 							%input{:type => :text, :class => "search-query", :placeholder => "Search ... NOT IMPLEMENTED"}
 			%li{:class => :dropdown}
@@ -29,6 +29,7 @@
 				%ul{:class => "dropdown-menu"}
 					%li
 						=link_to "Browse", PadrApp.url(:forum,:browse)
+					%li
 						%form{ :class => "navbar-search pull-left"}
 							%input{:type => :text, :class => "search-query", :placeholder => "Search ... NOT IMPLEMENTED"}
 			%li{:class => :dropdown}
@@ -56,4 +57,5 @@
 					-else
 						%li
 							=link_to "Log In", "#session", "data-toggle" => "modal"
+						%li
 							=link_to "Create Account", PadrApp.url(:accounts,:create)

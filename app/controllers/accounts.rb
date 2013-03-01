@@ -43,13 +43,15 @@ PadrApp.controllers :accounts do
 
   post :create do
 		params[:account][:role] = :user
+		params[:account][:permissions] = "thread_create blog_entry_create"
 		@account = Account.create(params[:account])
-		if @account.save then
+		if !@account then
+			flash[:error] = 'Account could not be created!'
+			render 'accounts/create'
+		else
 			@account.save!
 			flash[:notice] = 'Account was successfully created.'
 			redirect url(:accounts,:view, :id => @account.id)
-		else
-			render 'accounts/create'
 		end
   end
 

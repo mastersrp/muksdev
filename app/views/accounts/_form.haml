@@ -8,27 +8,27 @@
 	-@role = current_account.role
 
 .group
-	=f.label :username
+	=f.label I18n.t("account.Username")
 	=f.error_message_on :username
 	=f.text_field :name, :class => :span3, :placeholder => @name
 
 .group
-	=f.label :email
+	=f.label I18n.t("account.Email")
 	=f.error_message_on :email
 	=f.text_field :email, :class => :span3, :type => :email, :required => :required, :placeholder => @email
 
 .group
-	=f.label :password
+	=f.label I18n.t("account.Password")
 	=f.error_message_on :password
 	=f.password_field :password, :class => :span3
 
 .group
-	=f.label :password_confirmation
+	=f.label I18n.t("account.Password_confirm")
 	=f.error_message_on :password_confirmation
 	=f.password_field :password_confirmation, :class => :span3
 	-if current_account != nil then
 		.group
-			=f.label :permissions
+			=f.label I18n.t("account.Permissions")
 			=f.error_message_on :permissions
 			=f.select :permissions, :options => current_account.permissions.split(" ").sort, :class => :span3
 

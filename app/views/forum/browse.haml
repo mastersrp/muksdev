@@ -2,22 +2,22 @@
 	%h2
 		Discussions
 	-if current_account != nil then
-		=link_to "New Discussion", "#discussion", :class => :btn, "data-toggle" => :modal
+		=link_to I18n.t("forum.New_Discussion"), "#discussion", :class => :btn, "data-toggle" => :modal
 	%table{:class => "table table-hover"}
 		%tr
 			%th
-				Title
+				=I18n.t("Subject")
 			%th
-				Posts
+				=I18n.t("Posts")
 			%th
-				Views
+				=I18n.t("Views")
 	
 		-@discussions.each do |thread|
 			%tr{:id => :post, :onclick => "window.location='#{PadrApp.url(:forum,:view,:id => thread.id)}';"}
 				%td
 					-if current_account != nil then
 						-if current_account.has_permission?("thread_delete") then
-							=submit_tag pat(:delete), :class => "btn btn-small btn-danger", :onclick => "window.location='#{url(:forum,:destroy,:id => thread.id)}';"
+							=submit_tag I18n.t("Delete"), :class => "btn btn-small btn-danger", :onclick => "window.location='#{url(:forum,:destroy,:id => thread.id)}';"
 					=link_to thread[:title], PadrApp.url(:forum, :view, :id => thread.id)
 					%br
 					Posted by
@@ -30,7 +30,7 @@
 	%br
 	
 	-if current_account != nil then
-		=link_to "New Discussion", "#discussion", :class => :btn, "data-toggle" => :modal
+		=link_to I18n.t("forum.New_Discussion"), "#discussion", :class => :btn, "data-toggle" => :modal
 	%br
 
 -if current_account != nil then

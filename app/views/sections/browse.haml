@@ -6,7 +6,7 @@
 			Create New Section
 	-form_for :section, PadrApp.url(:sections,:create), :class => :form do |f|
 		.group
-			=f.label :title
+			=f.label I18n.t("section.Title")
 			=f.error_message_on :title
 			=f.text_field :title, :class => :span3
 

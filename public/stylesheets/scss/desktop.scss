@@ -1,11 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
 	padding-top: 40px;
 	background-color: #FFFFFF;
 	// Below url is a placeholder. Hosted on another site of mine.
 	background: url(http://mastersrp.kodingen.com/img/bg_test1_content.png) repeat;
+	font-family: 'Open Sans', sans-serif;
 }
 div#header {
-	height: 150px;
+	height: 100px;
 }
 div#navbar{
 }

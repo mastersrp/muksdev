@@ -9,9 +9,9 @@
 		=partial "base/user"
 	%br
 	.span3
-		=link_to "Blog", PadrApp.url(:blog,:index)
+		=link_to I18n.t("Blog"), PadrApp.url(:blog,:index)
 	%br
 	.span3
 		%p
-			Email: 
+			=I18n.t("account.Email")
 			=@account[:email]

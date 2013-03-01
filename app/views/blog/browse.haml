@@ -1,22 +1,22 @@
 .blog
 	%h2
-		Blogs
+		=I18n.t("Blogs")
 	-if current_account != nil then	
-		=link_to "New Entry", "#blog", :class => :btn, "data-toggle" => :modal
+		=link_to I18n.t("blog.New_Entry"), "#blog", :class => :btn, "data-toggle" => :modal
 	%table{:class => "table table-hover"}
 		%tr
 			%th
-				Title
+				=I18n.t("Subject")
 			%th
-				Views
+				=I18n.t("Views")
 			%th
-				Date
+				=I18n.t("Date")
 		-Entry.all.each do |entry|
 			%tr{:id => :entry, :onclick => "window.location='#{PadrApp.url(:blog,:view,:id => entry.id)}';"}
 				%td
 					-if current_account != nil then
 						-if current_account.has_permission?("blog_delete") then
-							=submit_tag pat(:delete), :class => "btn btn-small btn-danger", :onclick => "window.location='#{PadrApp.url(:blog,:destroy,:id => entry.id)}';"
+							=submit_tag I18n.t("Delete"), :class => "btn btn-small btn-danger", :onclick => "window.location='#{PadrApp.url(:blog,:destroy,:id => entry.id)}';"
 					=link_to entry[:title], PadrApp.url(:blog,:view,:id => entry.id)
 					%br
 					Posted by
@@ -28,6 +28,6 @@
 
 	%br
 	-if current_account != nil then
-		=link_to "New Entry", "#blog", :class => :btn, "data-toggle" => :modal
+		=link_to I18n.t("blog.New_Entry"), "#blog", :class => :btn, "data-toggle" => :modal
 	%br
 =partial "blog/new"

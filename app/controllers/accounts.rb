@@ -44,6 +44,7 @@ PadrApp.controllers :accounts do
   post :create do
 		params[:account][:role] = :user
 		params[:account][:permissions] = "thread_create blog_entry_create"
+		# TODO: Set up a real permissions kind of deal. This is dumb.
 		@account = Account.create(params[:account])
 		if !@account then
 			flash[:error] = 'Account could not be created!'

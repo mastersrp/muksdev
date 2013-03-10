@@ -3,6 +3,8 @@ class Section < CouchRest::Model::Base
 
   property :title,		String
 
+	view_by :title
+
   collection_of :discussions
   validates_presence_of :title
 	validates_uniqueness_of :title

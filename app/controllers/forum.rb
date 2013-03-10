@@ -24,12 +24,12 @@ PadrApp.controllers :forum do
 	post :create do	
 		if current_account != nil then
 			@post = Post.create(:title => params[:title], :body => params[:body], :created_at => DateTime.now, :account => current_account )
-			if !@post then
+			if !@post or !@post.save then
 				flash[:error] = "Could not create post!"
 				redirect url(:forum,:new)
 			end
 			@section = Section.find( params[:section] )
-			@discussion = Discussion.create(:title => params[:title], :account => current_account, :views => 0)
+			@discussion = Discussion.create(:title => params[:title], :account => current_account, :views => 0, :created_at => DateTime.now)
 			@post[:discussion] = @discussion.id
 			@post.save!
 			@discussion.posts << Post.get( @post.id )
@@ -43,7 +43,7 @@ PadrApp.controllers :forum do
       redirect url(:forum,:view,:id => @discussion.id)
     else
 			redirect url(:accounts,:new)
-  	end
+		end
   end
 
 	post :update, :with => :id do

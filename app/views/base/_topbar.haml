@@ -28,7 +28,7 @@
 						=link_to I18n.t("Browse"), PadrApp.url(:forum,:browse)
 			%li{:class => :dropdown}
 				%a{:class => "dropdown-toggle", "data-toggle" => "dropdown", :href => "#"}
-					%i{:class => "icon-user"}
+					%span{:class => "glyphicon glyphicon-user"}
 					%b{:class => :caret}
 				%ul{:class => "dropdown-menu"}
 					-if current_account != nil then
@@ -45,7 +45,7 @@
 						%li
 							=link_to "Min Blog",	PadrApp.url(:blog,:index)
 							%a{:href => "#"}
-								%i{:class => "icon-envelope"}
+								%span{:class => "glyphicon glyphicon-envelope"}
 								=I18n.t("account.Messages")
 						%li{:class => "divider"}
 						%li

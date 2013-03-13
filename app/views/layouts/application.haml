@@ -4,7 +4,6 @@
 		%meta{:charset => "UTF-8"}
 		%meta{:name => :viewport, :content => "width=device-width,initial-scale=1.0"}
 		=stylesheet_link_tag "bootstrap", "desktop"
-		=javascript_include_tag 'application', 'jquery', 'require', "bootstrap.min", "angular.min"
 		%title
 			=I18n.t("site.title")
 	%body
@@ -60,3 +59,4 @@
 				}
 			});*/
 		=#javascript_include_tag 'https://login.persona.org/include.js'
+		=javascript_include_tag 'application', 'jquery', 'require', "bootstrap.min", "angular.min"

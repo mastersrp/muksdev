@@ -5,9 +5,6 @@
 		%meta{:name => :viewport, :content => "width=device-width,initial-scale=1.0"}
 		=stylesheet_link_tag "bootstrap", "desktop"
 		=javascript_include_tag 'application', 'jquery', 'require', "bootstrap.min", "angular.min"
-		-if current_account != nil then
-			=stylesheet_link_tag 'aloha', 'aloha-core'
-			%script{:src => '/javascripts/aloha.js', 'data-aloha-plugins' => "common/ui,common/format,common/list,common/link,common/highlighteditables"}
 		%title
 			=I18n.t("site.title")
 	%body
@@ -33,11 +30,6 @@
 					Icons Copyright &copy; 2010 - 2013
 					=link_to "Glyphicons", "http://glyphicons.com/"
 		:javascript
-			/*Aloha.ready(function(){
-				Aloha.jQuery("#editable").each(function(index){
-					Aloha.jQuery(this).aloha();
-				});
-			});*/
 			var post_to_url = function(path,params,method) {
 				method = method || "post";
 				var form = document.createElement("form");

@@ -1,9 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
 	padding-top: 40px;
-	background-color: #FFFFFF;
-	// Below url is a placeholder. Hosted on another site of mine.
-	background: url(http://mastersrp.kodingen.com/img/bg_test1_content.png) repeat;
+	/*background-image: url(http://mastersrp.kodingen.com/img/bg_test1_content.png)
+	 * Somehow the above doesn't work. TODO: Get it working (???)
+	 */
 	font-family: 'Open Sans', sans-serif;
 }
 div#header {

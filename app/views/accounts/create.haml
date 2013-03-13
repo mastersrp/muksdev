@@ -1,3 +1,3 @@
 .signup
-	-form_for :account, url(:accounts,:create), :class => :form do |f|
+	-form_for :account, url(:accounts,:create), :class => "form-horizontal" do |f|
 		=partial "accounts/form", :locals => {:f => f}

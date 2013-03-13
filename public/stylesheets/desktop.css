@@ -21,8 +21,23 @@ div#content {
 	border-style: solid;
 }
 div.forum {
+	background-color: #FFFFFF;
+	padding: 0.5em;
+	min-height: 15em;
+	min-width: 15em;
+	border-color: #0071C2;
+	border-width: 1px;
+	border-style: solid;
 }
 div.post {
+	clear: both;
+	background-color: #FFFFFF;
+	padding: 0.5em;
+	min-height: 15em;
+	min-width: 15em;
+	border-color: #0071C2;
+	border-width: 1px;
+	border-style: solid;
 	border-color: gray;
 	border-width: 1px;
 	border-style: dotted;
@@ -32,7 +47,7 @@ div.user {
 }
 div.content {
 	background-color: #FFFFFF;
-	color: #FFFFFF;
+	/*color: #FFFFFF;*/
 }
 div#footer {
 	background-color: #FFFFFF;

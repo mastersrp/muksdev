@@ -2,7 +2,8 @@
 %html{ "ng-app" => "" }
 	%head
 		%meta{:charset => "UTF-8"}
-		=stylesheet_link_tag "bootstrap.min", "desktop"
+		%meta{:name => :viewport, :content => "width=device-width,initial-scale=1.0"}
+		=stylesheet_link_tag "bootstrap", "desktop"
 		=javascript_include_tag 'application', 'jquery', 'require', "bootstrap.min", "angular.min"
 		-if current_account != nil then
 			=stylesheet_link_tag 'aloha', 'aloha-core'

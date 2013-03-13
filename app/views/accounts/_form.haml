@@ -7,29 +7,34 @@
 	-@email = current_account.email
 	-@role = current_account.role
 
-.group
-	=f.label I18n.t("account.Username")
+.control-group
+	=f.label I18n.t("account.Username"), :class => "control-label"
 	=f.error_message_on :username
-	=f.text_field :name, :class => :span3, :placeholder => @name
+	.controls
+		=f.text_field :name, :class => :span3, :placeholder => @name
 
-.group
-	=f.label I18n.t("account.Email")
+.control-group
+	=f.label I18n.t("account.Email"), :class => "control-label"
 	=f.error_message_on :email
-	=f.text_field :email, :class => :span3, :type => :email, :required => :required, :placeholder => @email
+	.controls
+		=f.text_field :email, :class => :span3, :type => :email, :required => :required, :placeholder => @email
 
-.group
-	=f.label I18n.t("account.Password")
+.control-group
+	=f.label I18n.t("account.Password"), :class => "control-label"
 	=f.error_message_on :password
-	=f.password_field :password, :class => :span3
+	.controls
+		=f.password_field :password, :class => :span3
 
-.group
-	=f.label I18n.t("account.Password_confirm")
+.control-group
+	=f.label I18n.t("account.Password_confirm"), :class => "control-label"
 	=f.error_message_on :password_confirmation
-	=f.password_field :password_confirmation, :class => :span3
-	-if current_account != nil then
-		.group
-			=f.label I18n.t("account.Permissions")
-			=f.error_message_on :permissions
+	.controls
+		=f.password_field :password_confirmation, :class => :span3
+-if current_account != nil then
+	.control-group
+		=f.label I18n.t("account.Permissions"), :class => "control-label"
+		=f.error_message_on :permissions
+		.controls
 			=f.select :permissions, :options => current_account.permissions.split(" ").sort, :class => :span3
 
 			-if current_account.has_permission? "admin" then
@@ -40,9 +45,10 @@
 
 %br			
 
-.group
-	=f.submit pat(:save), :class => "btn btn-primary"
-	=f.submit pat(:cancel), :onclick => "window.location='#{url(:accounts,:index)}';return false", :class => :btn
+.control-group
+	.controls
+		=f.submit pat(:save), :class => "btn btn-primary"
+		=f.submit pat(:cancel), :onclick => "window.location='#{url(:accounts,:index)}';return false", :class => :btn
 
 -if current_account != nil then
 	-if current_account.has_permission? "admin" then

@@ -19,32 +19,21 @@ div#content {
 	border-color: #0071C2;
 	border-width: 1px;
 	border-style: solid;
-	div.forum {
-		div.post {
-			border-color: gray;
-			border-width: 1px;
-			border-style: dotted;
-			div.user {
-				float: left;
-			}
-			div.content {
-				background-color: #FFFFFF;
-				color: #FFFFFF;
-			}
-		}
-	}
 }
-div.group {
-	label {
-		font-weight: bold;
-	}
-	span.description {
-		color: gray;
-		font-style: italic;
-		font-weight: lighter;
-	}
+div.forum {
 }
-
+div.post {
+	border-color: gray;
+	border-width: 1px;
+	border-style: dotted;
+}
+div.user {
+	float: left;
+}
+div.content {
+	background-color: #FFFFFF;
+	color: #FFFFFF;
+}
 div#footer {
 	background-color: #FFFFFF;
 	padding: 0.2em;

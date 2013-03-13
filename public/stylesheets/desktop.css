@@ -21,13 +21,6 @@ div#content {
 	border-style: solid;
 }
 div.forum {
-	background-color: #FFFFFF;
-	padding: 0.5em;
-	min-height: 15em;
-	min-width: 15em;
-	border-color: #0071C2;
-	border-width: 1px;
-	border-style: solid;
 }
 div.post {
 	clear: both;
@@ -74,4 +67,7 @@ div.sidebar {
 
 div.session {
 	padding: 5px;
+}
+div.modal {
+	background-color: #FFFFFF;
 }

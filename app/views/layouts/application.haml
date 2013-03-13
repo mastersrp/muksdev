@@ -3,6 +3,7 @@
 	%head
 		%meta{:charset => "UTF-8"}
 		%meta{:name => :viewport, :content => "width=device-width,initial-scale=1.0"}
+		%link{:rel => "shortcut icon", :href => "/favicon.ico"}
 		=stylesheet_link_tag "bootstrap", "desktop"
 		%title
 			=I18n.t("site.title")
@@ -10,7 +11,7 @@
 		.container{ "data-spy" => "scroll", "data-target" => ".navbar" }
 			#header
 				%a{:href => '/'}
-					%img{:src => "http://muks.dk/images/Muks.gif", :class => "img-rounded"}
+					%img{:src => "/Muks.png", :class => "img-rounded"}
 			#navbar
 				=partial "base/topbar"
 			.flash=[:error,:warning,:notice].map { |type| flash_tag(type,:class => "message #{type}") }.join

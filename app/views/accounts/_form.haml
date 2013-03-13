@@ -47,8 +47,8 @@
 
 .control-group
 	.controls
-		=f.submit pat(:save), :class => "btn btn-primary"
-		=f.submit pat(:cancel), :onclick => "window.location='#{url(:accounts,:index)}';return false", :class => :btn
+		=f.submit I18n.t("Save"), :class => "btn btn-primary"
+		=f.submit I18n.t("Cancel"), :onclick => "window.location='#{url(:accounts,:index)}';return false", :class => :btn
 
 -if current_account != nil then
 	-if current_account.has_permission? "admin" then

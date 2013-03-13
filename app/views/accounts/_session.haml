@@ -17,18 +17,21 @@
 		%br
 		.login
 			-form_for :account, PadrApp.url(:accounts,:login),:class => :form do |f|
-				.group
-					=f.label :email
+				.control-group
+					=f.label I18n.t("account.Email"), :class => "control-label"
 					=f.error_message_on :email
-					=f.text_field :email, :class => :span3, :required => :required
-				.group
-					=f.label :password
+					.controls
+						=f.text_field :email, :class => :span3, :required => :required
+				.control-group
+					=f.label I18n.t("account.Password"), :class => "control-label"
 					=f.error_message_on :password
-					=f.password_field :password, :class => :span3
+					.controls
+						=f.password_field :password, :class => :span3
 
-				.group
-					=f.submit 'Log In', :class => "btn btn-primary"
-					=f.submit pat(:cancel), :class => :btn, "data-dismiss" => :modal, "aria-hidden" => true
+				.control-group
+					.controls
+						=f.submit I18n.t("account.Log_In"), :class => "btn btn-primary"
+						=f.submit I18n.t("Cancel"), :class => :btn, "data-dismiss" => :modal, "aria-hidden" => true
 	-else
 		%p
 			You are currently logged in!

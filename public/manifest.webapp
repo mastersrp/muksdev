@@ -1,0 +1,13 @@
+{
+  "version": "0.1",
+  "name": "Muks",
+  "description": "Det danske fællesskab hvor alle kan være med.",
+  "launch_path": "/",
+  "developer": {
+    "name": "Muks fællesskabet",
+    "url": "http://muks.dk"
+  },
+  "installs_allowed_from": ["*"],
+  "appcache_path": "/cache.manifest",
+  "default_locale": "da"
+}
